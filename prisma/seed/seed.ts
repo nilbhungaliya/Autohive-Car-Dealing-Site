@@ -9,7 +9,7 @@ async function main() {
 	console.log("testing");
 	// await seedTaxonomy(prisma);
 	// await seedClassifieds(prisma);
-	await seedImages(prisma);
+	// await seedImages(prisma);
 }
 
 main()
