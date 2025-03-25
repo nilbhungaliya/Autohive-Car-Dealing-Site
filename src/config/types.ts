@@ -23,3 +23,7 @@ export enum MultiStepForEnum{
   SUBMIT_DATE = 2,
   SUBMIT_DETAILS = 3,
 }
+
+export interface favourites{
+  ids: number[];
+}
