@@ -173,7 +173,7 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
               </div>
             )}
 
-            <ul className="text-xs md:text-xs text-gray-600 xl:flex grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-4 items-center justify-between w-full">
+            <ul className="text-xs xl:flex md:text-xs text-gray-600 grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-4 lg:grid-cols-2 lg:grid-rows-4 items-center justify-between w-full">
               {getKeyClassifiedInfo(classified)
                 .filter((v) => v.value)
                 .map(({ id, icon, value }) => (
@@ -187,9 +187,9 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
                 ))}
             </ul>
           </div>
-          <div className="p-2 mt-4 flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:gap-x-2 w-full ">
+          <div className="mt-4 flex flex-col lg:flex-col space-y-2 lg:space-y-0 lg:gap-x-2 w-full ">
             <Button
-              className="flex-1 text-black transition-colors hover:border-white hover:bg-primary hover:text-white py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base"
+              className="flex-1 transition-colors hover:border-white hover:bg-primary hover:text-white py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base text-black"
               asChild
               variant="outline"
               size="sm"
