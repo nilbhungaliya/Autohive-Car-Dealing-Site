@@ -3,4 +3,4 @@ export const imageSources = {
     "https://majestic-motors.s3.eu-west-2.amazonaws.com/uploads/classified-placeholder.jpeg",
 };
 
-export const CLASSIFIEDS_PER_PAGE = 5;
+export const CLASSIFIEDS_PER_PAGE = 9;
