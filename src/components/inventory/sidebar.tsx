@@ -6,7 +6,9 @@ import { env } from "@/env";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { parseAsString, useQueryStates } from "nuqs";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { SearchInput } from "../shared/search-input";
+import { TaxonomyFilters } from "./taxonomy-filters";
 
 interface SidebarProps extends AwaitedPageProps {
   minMaxValues: any;
@@ -54,6 +56,22 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
     setFilterCount(0);
   };
 
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target
+
+    setQueryStates({ [name]: value || null });
+
+    if (name === "make") {
+      setQueryStates({
+        model: null,
+        modelVariant: null,
+      });
+    }
+    router.refresh();
+  };
+
   return (
     <div className="py-4 w-[21.25rem] bg-white border-r border-muted hidden lg:block">
       <div>
@@ -73,7 +91,19 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
             Clear all {filterCount ? `(${filterCount})` : null}
           </button>
         </div>
-        <div className="mt-2"/>
+        <div className="mt-2" />
+      </div>
+      <div className="p-4">
+        <SearchInput
+          placeholder="Search Classifieds"
+          className="w-full px-3 py-2 border rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div className="p-4 space-y-2">
+        <TaxonomyFilters
+          searchParams={searchParams}
+          handleChange={handleChange}
+        />
       </div>
     </div>
   );
