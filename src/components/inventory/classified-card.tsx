@@ -2,17 +2,8 @@
 import { routes } from "@/config/routes";
 import {
   ClassifiedWithImages,
-  favourites,
   MultiStepForEnum,
 } from "@/config/types";
-import {
-  Classified,
-  Colour,
-  FuelType,
-  OdoUnit,
-  Transmission,
-  type Prisma,
-} from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { HtmlParser } from "../shared/html-parser";
@@ -22,71 +13,11 @@ import { FavouriteButton } from "./favourite-button";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { formatColour, formatFuelType, formatNumber, formatOdometerUnit, formatTransmission } from "@/lib/utils";
 
 interface ClassifiedCardProps {
   classified: ClassifiedWithImages;
   favourites: number[];
-}
-
-function formatNumber(num: number | null, options?: Intl.NumberFormatOptions) {
-  if (!num) return "0";
-  return new Intl.NumberFormat("en-GB", options).format(num);
-}
-
-function formatOdometerUnit(unit: OdoUnit) {
-  return unit === OdoUnit.MILES ? "mi" : "km";
-}
-
-function formatTransmission(transmission: Transmission) {
-  return transmission === Transmission.AUTOMATIC ? "Auto" : "Manual";
-}
-
-function formatFuelType(fuel: FuelType) {
-  switch (fuel) {
-    case FuelType.DIESEL:
-      return "Diesel";
-    case FuelType.ELECTRIC:
-      return "Electric";
-    case FuelType.HYBRID:
-      return "Hybrid";
-    case FuelType.PETROL:
-      return "Petrol";
-    default:
-      return "Unknown";
-  }
-}
-
-function formatColour(colour: Colour) {
-  switch (colour) {
-    case Colour.BLACK:
-      return "Black";
-    case Colour.BLUE:
-      return "Blue";
-    case Colour.BROWN:
-      return "Brown";
-    case Colour.GOLD:
-      return "Gold";
-    case Colour.GREEN:
-      return "Green";
-    case Colour.GREY:
-      return "Grey";
-    case Colour.ORANGE:
-      return "Orange";
-    case Colour.PINK:
-      return "Pink";
-    case Colour.PURPLE:
-      return "Purple";
-    case Colour.RED:
-      return "Red";
-    case Colour.SILVER:
-      return "Silver";
-    case Colour.WHITE:
-      return "White";
-    case Colour.YELLOW:
-      return "Yellow";
-    default:
-      return "Unknown";
-  }
 }
 
 const getKeyClassifiedInfo = (classified: ClassifiedWithImages) => {

@@ -38,6 +38,7 @@ export const TaxonomyFilters = (props: TaxonomyFiltersProps) => {
       setMakes(data.makes);
       setModels(data.models);
       setModelVariants(data.modelVariants);
+      
     })();
   }, [searchParams]);
 
