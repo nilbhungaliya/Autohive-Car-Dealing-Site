@@ -3,12 +3,15 @@
 import { routes } from "@/config/routes";
 import { AwaitedPageProps } from "@/config/types";
 import { env } from "@/env";
-import { cn } from "@/lib/utils";
+import { cn, formatBodyType, formatColour, formatFuelType, formatTransmission, formatUlezCompliance } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { parseAsString, useQueryStates } from "nuqs";
 import { ChangeEvent, useEffect, useState } from "react";
 import { SearchInput } from "../shared/search-input";
 import { TaxonomyFilters } from "./taxonomy-filters";
+import { RangeFilter } from "./range-filter";
+import { Select } from "../ui/select";
+import { BodyType, Colour, FuelType, Transmission, ULEZCompliance } from "@prisma/client";
 
 interface SidebarProps extends AwaitedPageProps {
   minMaxValues: any;
@@ -16,6 +19,8 @@ interface SidebarProps extends AwaitedPageProps {
 
 export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
   const router = useRouter();
+
+  const { _min, _max } = minMaxValues;
 
   const [filterCount, setFilterCount] = useState(0);
 
@@ -59,7 +64,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
     setQueryStates({ [name]: value || null });
 
@@ -103,6 +108,114 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
         <TaxonomyFilters
           searchParams={searchParams}
           handleChange={handleChange}
+        />
+
+        <RangeFilter
+          label="Year"
+          minName="minYear"
+          maxName="maxYear"
+          defaultMin={_min.year || 1925}
+          defaultMax={_max.year || new Date().getFullYear()}
+          handleChange={handleChange}
+          searchParams={searchParams}
+        />
+
+        <RangeFilter
+          label="Price"
+          minName="minPrice"
+          maxName="maxPrice"
+          defaultMin={_min.price || 0}
+          defaultMax={_max.price || 21474836}
+          handleChange={handleChange}
+          searchParams={searchParams}
+          increment={1000000}
+          thousandSeparator
+          currency={{ currencyCode: "GBP" }}
+        />
+
+        <RangeFilter
+          label="Odometer Reading"
+          minName="minReading"
+          maxName="maxReading"
+          defaultMin={_min.odoReading || 0}
+          defaultMax={_max.odoReading || 21474836}
+          handleChange={handleChange}
+          searchParams={searchParams}
+          increment={5000}
+          thousandSeparator
+        />
+
+        <Select
+          label="Transmission"
+          name="transmission"
+          onChange={handleChange}
+          value={queryStates.transmission || ""}
+          options={Object.values(Transmission).map((value) => ({
+            label: formatTransmission(value),
+            value,
+          }))}
+        />
+
+        <Select
+          label="Fuel Type"
+          name="fuelType"
+          value={queryStates.fuelType || ""}
+          onChange={handleChange}
+          options={Object.values(FuelType).map((value) => ({
+            label: formatFuelType(value),
+            value,
+          }))}
+        />
+        <Select
+          label="Body Type"
+          name="bodyType"
+          value={queryStates.bodyType || ""}
+          onChange={handleChange}
+          options={Object.values(BodyType).map((value) => ({
+            label: formatBodyType(value),
+            value,
+          }))}
+        />
+        <Select
+          label="Colour"
+          name="colour"
+          value={queryStates.colour || ""}
+          onChange={handleChange}
+          options={Object.values(Colour).map((value) => ({
+            label: formatColour(value),
+            value,
+          }))}
+        />
+        <Select
+          label="ULEZ Compliance"
+          name="ulezCompliance"
+          value={queryStates.ulezCompliance || ""}
+          onChange={handleChange}
+          options={Object.values(ULEZCompliance).map((value) => ({
+            label: formatUlezCompliance(value),
+            value,
+          }))}
+        />
+
+        <Select
+          label="Doors"
+          name="doors"
+          value={queryStates.doors || ""}
+          onChange={handleChange}
+          options={Array.from({ length: 6 }).map((_, i) => ({
+            label: Number(i + 1).toString(),
+            value: Number(i + 1).toString(),
+          }))}
+        />
+        <Select
+          label="Seats"
+          name="seats"
+          value={queryStates.seats || ""}
+          onChange={handleChange}
+          options={Array.from({ length: 8 }).map((_, i) => ({
+            label: Number(i + 1).toString(),
+            value: Number(i + 1).toString(),
+          }))}
         />
       </div>
     </div>
