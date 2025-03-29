@@ -1,7 +1,7 @@
 "use client";
 
 import { routes } from "@/config/routes";
-import { AwaitedPageProps } from "@/config/types";
+import {SidebarProps } from "@/config/types";
 import { env } from "@/env";
 import { cn, formatBodyType, formatColour, formatFuelType, formatTransmission, formatUlezCompliance } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -13,9 +13,6 @@ import { RangeFilter } from "./range-filter";
 import { Select } from "../ui/select";
 import { BodyType, Colour, FuelType, Transmission, ULEZCompliance } from "@prisma/client";
 
-interface SidebarProps extends AwaitedPageProps {
-  minMaxValues: any;
-}
 
 export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
   const router = useRouter();
