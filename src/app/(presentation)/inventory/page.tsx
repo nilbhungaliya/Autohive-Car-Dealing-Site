@@ -1,8 +1,7 @@
-import { ClassifiedCard } from "@/components/inventory/classified-card";
 import { ClassifiedList } from "@/components/inventory/classified-list";
+import { DialogFilters } from "@/components/inventory/dialog-filter";
 import { Sidebar } from "@/components/inventory/sidebar";
 import { CustomPagination } from "@/components/shared/custom-pagination";
-import { Pagination } from "@/components/ui/pagination";
 import { CLASSIFIEDS_PER_PAGE } from "@/config/constants";
 import { routes } from "@/config/routes";
 import { AwaitedPageProps, favourites, PageProps } from "@/config/types";
@@ -136,15 +135,13 @@ const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
 export default async function InventoryPage(props: PageProps) {
   const searchParams = await props.searchParams;
   const classifieds = await getInventory(searchParams);
-  const count = await db.classified.count(
-    {
-      where: buildeClassfiedFilterQuery(searchParams),
-    }
-  );
+  const count = await db.classified.count({
+    where: buildeClassfiedFilterQuery(searchParams),
+  });
 
   const minMaxResult = await db.classified.aggregate({
     where: { status: ClassifiedStatus.LIVE },
-    _min:{
+    _min: {
       year: true,
       price: true,
       odoReading: true,
@@ -175,23 +172,38 @@ export default async function InventoryPage(props: PageProps) {
             <h2 className="text-sm md:text-base lg:text-xl font-semibold min-w-fit text-black">
               We have found {count} classifieds
             </h2>
-            {/* <DialoagFilters /> */}
+            <DialogFilters
+              minMaxValues={minMaxResult}
+              count={0}
+              searchParams={searchParams}
+            />
+            <CustomPagination
+              baseURL={routes.inventory}
+              totalPages={totalPages}
+              styles={{
+                paginationRoot: "justify-end hidden lg:flex text-black",
+                paginationPrevious: "hover:bg-slate-200 hover:text-black",
+                paginationNext: "hover:bg-slate-200 hover:text-black",
+                paginationLink: "border-none active:border hover:text-black hover:bg-slate-200",
+                paginationLinkActive: "bg-slate-200",
+              }}
+            />
           </div>
+          <ClassifiedList
+            classifieds={classifieds}
+            favourites={favourites ? favourites.ids : []}
+          />
           <CustomPagination
             baseURL={routes.inventory}
             totalPages={totalPages}
             styles={{
-              paginationRoot: "justify-end hidden lg:flex text-black",
+              paginationRoot: "justify-center lg:hidden pt-12 text-black",
               paginationPrevious: "hover:bg-slate-200 hover:text-black",
               paginationNext: "hover:bg-slate-200 hover:text-black",
               paginationLink:
                 "border-none active:border hover:bg-slate-200 hover:text-black",
               paginationLinkActive: "bg-slate-200",
             }}
-          />
-          <ClassifiedList
-            classifieds={classifieds}
-            favourites={favourites ? favourites.ids : []}
           />
         </div>
       </div>
