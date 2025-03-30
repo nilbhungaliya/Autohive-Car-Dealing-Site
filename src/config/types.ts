@@ -37,3 +37,7 @@ export type FilterOptions<LType, VType> = Array<{
 	label: LType;
 	value: VType;
 }>;
+
+export interface SidebarProps extends AwaitedPageProps {
+  minMaxValues: any;
+}
