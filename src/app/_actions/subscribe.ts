@@ -4,7 +4,7 @@ import db from "@/lib/db";
 import { CustomerStatus } from "@prisma/client";
 import { PrismaClientKnownRequestError, PrismaClientValidationError } from "@prisma/client/runtime/library";
 import { z } from "zod";
-import { SubscribeSchema } from "../schemas/subscribe.Schema";
+import { SubscribeSchema } from "../schemas/subscribe.schema";
 
 export const subscribeAction = async (_: any, formData: FormData) => {
   try {
