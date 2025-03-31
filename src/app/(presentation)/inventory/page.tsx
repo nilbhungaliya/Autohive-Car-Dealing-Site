@@ -1,5 +1,6 @@
 import { ClassifiedList } from "@/components/inventory/classified-list";
 import { DialogFilters } from "@/components/inventory/dialog-filter";
+import { InventorySkeleton } from "@/components/inventory/inventory-skeleton";
 import { Sidebar } from "@/components/inventory/sidebar";
 import { CustomPagination } from "@/components/shared/custom-pagination";
 import { CLASSIFIEDS_PER_PAGE } from "@/config/constants";
@@ -9,6 +10,7 @@ import db from "@/lib/db";
 import { redis } from "@/lib/redis-store";
 import { getSourceId } from "@/lib/source-id";
 import { ClassifiedStatus, type Prisma } from "@prisma/client";
+import { Suspense } from "react";
 import { z } from "zod";
 
 const pageSchema = z
@@ -134,7 +136,8 @@ const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
 
 export default async function InventoryPage(props: PageProps) {
   const searchParams = await props.searchParams;
-  const classifieds = await getInventory(searchParams);
+  const classifieds = getInventory(searchParams);
+
   const count = await db.classified.count({
     where: buildeClassfiedFilterQuery(searchParams),
   });
@@ -184,15 +187,18 @@ export default async function InventoryPage(props: PageProps) {
                 paginationRoot: "justify-end hidden lg:flex text-black",
                 paginationPrevious: "hover:bg-slate-200 hover:text-black",
                 paginationNext: "hover:bg-slate-200 hover:text-black",
-                paginationLink: "border-none active:border hover:text-black hover:bg-slate-200",
+                paginationLink:
+                  "border-none active:border hover:text-black hover:bg-slate-200",
                 paginationLinkActive: "bg-slate-200",
               }}
             />
           </div>
-          <ClassifiedList
-            classifieds={classifieds}
-            favourites={favourites ? favourites.ids : []}
-          />
+          <Suspense fallback={<InventorySkeleton />}>
+            <ClassifiedList
+              classifieds={classifieds}
+              favourites={favourites ? favourites.ids : []}
+            />
+          </Suspense>
           <CustomPagination
             baseURL={routes.inventory}
             totalPages={totalPages}
