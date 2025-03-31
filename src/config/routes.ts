@@ -6,4 +6,5 @@ export const routes = {
     reserve : (slug: string, step: MultiStepForEnum) => `/inventory/${slug}/reserve?step=${step}`,
     favourites : "/favourites",
     inventory : "/inventory",
+    notAvailable : (slug: string) => `/inventory/${slug}/not-available`,
 }
