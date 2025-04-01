@@ -2,7 +2,9 @@ import { env } from "@/env";
 import { routes } from "./routes";
 
 export const imageSources = {
-  classifiedPlaceholder:"https://autohive-motors.imgix.net/uploads/AdobeStock_855683950.jpeg"
+  classifiedPlaceholder:"https://autohive-motors.imgix.net/uploads/AdobeStock_855683950.jpeg",
+  carLineup:"https://autohive-motors.imgix.net/uploads/AdobeStock_197763326.jpeg",
+  featureSection:"https://autohive-motors.imgix.net/uploads/AdobeStock_549957876.jpeg"
 };
 
 export const CLASSIFIEDS_PER_PAGE = 3;
