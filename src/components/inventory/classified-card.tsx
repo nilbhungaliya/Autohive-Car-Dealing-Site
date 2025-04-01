@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { formatColour, formatFuelType, formatNumber, formatOdometerUnit, formatTransmission } from "@/lib/utils";
+import { ImgixImage } from "../ui/imgix-image";
 
 interface ClassifiedCardProps {
   classified: ClassifiedWithImages;
@@ -72,7 +73,7 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
         >
           <div className="aspect-3/2 relative">
             <Link href={routes.singleClassified(classified.slug)}>
-              <Image
+              <ImgixImage
                 placeholder="blur"
                 blurDataURL={classified.images[0].blurhash}
                 src={classified.images[0].src}

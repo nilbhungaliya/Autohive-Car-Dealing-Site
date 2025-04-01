@@ -1,8 +1,8 @@
+import { env } from "@/env";
 import { routes } from "./routes";
 
 export const imageSources = {
-  classifiedPlaceholder:
-    "https://majestic-motors.s3.eu-west-2.amazonaws.com/uploads/classified-placeholder.jpeg",
+  classifiedPlaceholder:"https://autohive-motors.imgix.net/uploads/AdobeStock_855683950.jpeg"
 };
 
 export const CLASSIFIEDS_PER_PAGE = 3;
