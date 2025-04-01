@@ -7,13 +7,13 @@ import { HeartIcon, MenuIcon } from "lucide-react";
 import { routes } from "@/config/routes";
 import { getSourceId } from "@/lib/source-id";
 import { redis } from "@/lib/redis-store";
-import { favourites } from "@/config/types";
+import { Favourites } from "@/config/types";
 
 export const PublicHeader = async() => {
     const sourceId = await getSourceId();
-    const favourites = await redis.get<favourites>(sourceId??"")
+    const favourites = await redis.get<Favourites>(sourceId??"")
   return (
-    <header className="flex items-center justify-between h-16  px-4 bg-white gap-x-6">
+    <header className="flex items-center justify-between h-16 px-4 bg-white gap-x-6">
       <div className="flex items-center flex-1">
         <Link href="/">
           <Image

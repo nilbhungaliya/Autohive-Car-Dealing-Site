@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { PublicHeader } from "./header";
 import { PublicFooter } from "./footer";
 
