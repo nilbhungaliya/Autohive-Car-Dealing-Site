@@ -15,7 +15,7 @@ import { HtmlParser } from "../shared/html-parser";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { routes } from "@/config/routes";
-import { MultiStepForEnum } from "@/config/types";
+import { MultiStepFormEnum } from "@/config/types";
 import {
   CarFrontIcon,
   CarIcon,
@@ -130,7 +130,7 @@ export const ClassifiedView = (props: ClassifiedWithImagesAndMake) => {
             size="lg"
             asChild
           >
-            <Link href={routes.reserve(props.slug, MultiStepForEnum.WELCOME)}>
+            <Link href={routes.reserve(props.slug, MultiStepFormEnum.WELCOME)}>
               Reserve Now
             </Link>
           </Button>

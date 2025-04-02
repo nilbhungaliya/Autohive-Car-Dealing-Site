@@ -2,7 +2,7 @@
 import { routes } from "@/config/routes";
 import {
   ClassifiedWithImages,
-  MultiStepForEnum,
+  MultiStepFormEnum,
 } from "@/config/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -127,7 +127,7 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
               size="sm"
             >
               <Link
-                href={routes.reserve(classified.slug, MultiStepForEnum.WELCOME)}
+                href={routes.reserve(classified.slug, MultiStepFormEnum.WELCOME)}
               >
                 Reserve
               </Link>
