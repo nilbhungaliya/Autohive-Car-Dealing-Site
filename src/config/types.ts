@@ -19,9 +19,9 @@ export type ClassifiedWithImages = Prisma.ClassifiedGetPayload<{
   };
 }>;
 
-export enum MultiStepForEnum{
+export enum MultiStepFormEnum{
   WELCOME = 1,
-  SUBMIT_DATE = 2,
+  SELECT_DATE = 2,
   SUBMIT_DETAILS = 3,
 }
 
@@ -40,4 +40,10 @@ export type FilterOptions<LType, VType> = Array<{
 
 export interface SidebarProps extends AwaitedPageProps {
   minMaxValues: any;
+}
+
+export interface MultiStepFormComponentProps extends AwaitedPageProps {
+	classified: Prisma.ClassifiedGetPayload<{
+		include: { make: true };
+	}>;
 }
