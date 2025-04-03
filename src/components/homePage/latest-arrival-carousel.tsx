@@ -28,7 +28,7 @@ export const LatestArrivalsCarousel = (props: LatestArrivalsCarouselProps) => {
   const { classifieds, favourites } = props;
 
   return (
-    <div className="mt-8 relative">
+    <div className="mt-8 relative text-white">
       <Swiper
         navigation={{
           prevEl: ".swiper-button-prev",
