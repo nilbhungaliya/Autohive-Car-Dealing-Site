@@ -9,6 +9,7 @@ export const env = createEnv({
         NODE_ENV: z.enum(["development", "test", "production"]),
         S3_BUCKET_ACCESS_KEY: z.string(),
         S3_BUCKET_SECRET_KEY: z.string(),
+        NEXTAUTH_SECRET: z.string(),
     },
 
     client:{
@@ -25,5 +26,6 @@ export const env = createEnv({
         S3_BUCKET_ACCESS_KEY: process.env.S3_BUCKET_ACCESS_KEY,
         S3_BUCKET_SECRET_KEY: process.env.S3_BUCKET_SECRET_KEY,
         NEXT_PUBLIC_IMGIX_URL: process.env.NEXT_PUBLIC_IMGIX_URL,
+        NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     }
 })
