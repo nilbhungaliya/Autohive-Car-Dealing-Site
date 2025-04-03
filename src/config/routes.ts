@@ -8,4 +8,6 @@ export const routes = {
     inventory : "/inventory",
     notAvailable : (slug: string) => `/inventory/${slug}/not-available`,
     success: (slug: string) => `/inventory/${slug}/success`,
+    signIn : "/auth/sign-in",
+    challenge : "/auth/challenge",
 }
