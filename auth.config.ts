@@ -8,6 +8,7 @@ import { bcryptPasswordCompare } from "@/lib/bcrypt";
 import ResendProvider from "next-auth/providers/resend";
 import { routes } from "@/config/routes";
 import type { AdapterUser } from "@auth/core/adapters";
+import { issueChallenge } from "@/lib/otp";
 
 export const config = {
   adapter: PrismaAdapter(db),
@@ -43,7 +44,15 @@ export const config = {
 
           if (!match) return null;
 
-          return { ...user, requires2FA: true };
+          await issueChallenge(user.id, user.email);
+
+          const dbUser = await db.user.findUnique({
+            where: { id: user.id },
+            omit: {hashedPassword: true}
+          })
+
+          return { ...dbUser, requires2FA: true };
+          
         } catch (error) {
           console.log({ error });
           return null;
