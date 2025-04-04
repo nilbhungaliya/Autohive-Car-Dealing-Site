@@ -79,7 +79,7 @@ export const PublicFooter = () => {
         <h4 className="text-lg font-bold text-primary">Company Info</h4>
         <p>Company No. 123456789 | VAT No. GB123456789</p>
         <p>
-          Majestic Motors is not authorised and not regulated by the Financial
+          Autohive Motors is not authorised and not regulated by the Financial
           Conduct Authority
         </p>
       </div>
