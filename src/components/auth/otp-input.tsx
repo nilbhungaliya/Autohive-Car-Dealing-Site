@@ -88,30 +88,39 @@ export const OneTimePasswordInput = forwardRef<HTMLInputElement, PinCodeProps>(
       }
     }
 
-    function handleKeyDown(event: React.KeyboardEvent, index: number) {
-      const currentValue = inputRefs.current[index].value;
-
-      if (event.key === "ArrowRight" && index < length - 1) {
-        inputRefs.current[index + 1].focus(); // Step 1
+    function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>, index: number) {
+      const isBackspace = event.key === 'Backspace';
+      const isArrowLeft = event.key === 'ArrowLeft';
+      const isArrowRight = event.key === 'ArrowRight';
+      const currentInput = inputRefs.current[index];
+    
+      if (!currentInput) return;
+    
+      if (isArrowRight && index < length - 1) {
+        inputRefs.current[index + 1]?.focus();
+        return;
       }
-
-      if (event.key === "ArrowLeft" && index > 0) {
-        inputRefs.current[index - 1].focus(); // Step 2
+    
+      if (isArrowLeft && index > 0) {
+        inputRefs.current[index - 1]?.focus();
+        return;
       }
-
-      if (event.key === "BackSpace") {
-        if (currentValue !== "") {
-          inputRefs.current[index].value = ""; // Step 3
-        } else {
-          if (index === 0) {
-            return; // Step 4
-          }
-          inputRefs.current[index - 1].value = ""; // Step 5
-          inputRefs.current[index - 1].focus(); // Step 6
+    
+      if (isBackspace) {
+        event.preventDefault(); // prevents default navigation behavior on backspace
+    
+        if (currentInput.value !== "") {
+          currentInput.value = "";
+        } else if (index > 0) {
+          const prevInput = inputRefs.current[index - 1];
+          prevInput.value = "";
+          prevInput.focus();
         }
-        setPinValue(); // Step 7
+    
+        setPinValue();
       }
     }
+    
 
     return (
       <div className="flex flex-col" ref={ref}>
