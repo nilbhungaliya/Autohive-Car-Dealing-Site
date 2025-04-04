@@ -8,8 +8,11 @@ import { routes } from "@/config/routes";
 import { getSourceId } from "@/lib/source-id";
 import { redis } from "@/lib/redis-store";
 import { Favourites } from "@/config/types";
+import { auth } from "@/auth";
+import { SignOutForm } from "../auth/sign-out";
 
 export const PublicHeader = async() => {
+    const session = await auth()
     const sourceId = await getSourceId();
     const favourites = await redis.get<Favourites>(sourceId??"")
   return (
@@ -36,23 +39,32 @@ export const PublicHeader = async() => {
           </Link>
         ))}
       </nav>
-      <Button
-        asChild
-        variant="ghost"
-        size="icon"
-        className="relative inline-block group hover:bg-transparent"
-      >
-        <Link href={routes.favourites}>
-          <div className="flex group-hover:bg-pink-500 diratopm-200 transition-colors ease-in-out items-center justify-center w-10 h-10 bg-muted rounded-full">
-            <HeartIcon className="w-6 h-6 text-primary group-hover:text-white group-hover:fill-white" />
-          </div>
-          <div className="absolute -top-1 5 -right-1.5 flex items-center justify-center w-5 h-5 text-white bg-pink-500 rounded-full group-hover:bg-primary">
-            <span className="text-xs">
-              {favourites ? favourites.ids.length : 0}
-            </span>
-          </div>
-        </Link>
-      </Button>
+      {session ? (
+				<div className="items-center md:flex gap-x-6 hidden">
+					<Link href={routes.admin.dashboard} className="text-black">
+						Backoffice
+					</Link>
+					<SignOutForm />
+				</div>
+			) : (
+				<Button
+					asChild
+					variant="ghost"
+					size="icon"
+					className="relative inline-block group"
+				>
+					<Link href={routes.favourites}>
+						<div className="flex group-hover:bg-pink-500 diratopm-200 transition-colors ease-in-out items-center justify-center w-10 h-10 bg-muted rounded-full">
+							<HeartIcon className="w-6 h-6 text-primary group-hover:text-white group-hover:fill-white" />
+						</div>
+						<div className="absolute -top-1 5 -right-1.5 flex items-center justify-center w-5 h-5 text-white bg-pink-500 rounded-full group-hover:bg-primary">
+							<span className="text-xs">
+								{favourites ? favourites.ids.length : 0}
+							</span>
+						</div>
+					</Link>
+				</Button>
+			)}
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="link" size="icon" className="md:hidden border-none">
