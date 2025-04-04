@@ -23,6 +23,7 @@
       "@/*": ["./src/*"],
       "@/env": ["./env.mjs"],
       "@/auth": ["./auth"],
+      "@/emails/*": ["./emails/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next-auth.d.ts"],
