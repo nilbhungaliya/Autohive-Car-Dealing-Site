@@ -58,7 +58,7 @@ const EmailLayout = ({ children, preview = "" }: EmailLayoutProps) => {
 										>
 											<Img
 												alt="logo"
-												src={`${baseUrl}/static/logo.svg`}
+												src={`${baseUrl}/static/autohive-logo.svg`}
 												className="h-full w-[200px]"
 											/>
 										</Link>
