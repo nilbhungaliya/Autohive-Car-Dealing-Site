@@ -48,7 +48,7 @@ export const OtpForm = () => {
     });
   };
 
-  const [sendButtonText, setSendButtonText] = useState("Send code");
+  const [sendButtonText, setSendButtonText] = useState("Resend code");
 
   const sendCode = () => {
     startCodeTransition(async () => {
