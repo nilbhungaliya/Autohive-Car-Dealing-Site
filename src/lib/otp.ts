@@ -9,7 +9,7 @@ const REDIS_PREFIX = "otp";
 
 export async function issueChallenge(userId: string, email: string) {
     const array = new Uint32Array(1);
-    const code = (crypto.getRandomValues(array)[0] % 9000000) + 1000000;
+    const code = (crypto.getRandomValues(array)[0] % 900000) + 100000;
 
     const hash = await bcryptPasswordHash(code.toString());
     const challenge = {codeHash: hash, email};
