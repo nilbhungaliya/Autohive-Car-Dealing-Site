@@ -16,5 +16,6 @@ export const routes = {
     settings: "/admin/settings",
     customers: "/admin/customers", 
     classifieds: "/admin/classifieds",
+    editClassified: (id: number) => `/admin/classifieds/edit/${id}`,
   },
 };
