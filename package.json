@@ -59,6 +59,7 @@
     "sonner": "^2.0.1",
     "swiper": "^11.2.6",
     "tailwind-merge": "^3.0.2",
+    "thumbhash": "^0.1.1",
     "tw-animate-css": "^1.2.4",
     "unlazy": "^0.12.3",
     "uuid": "^11.1.0",
