@@ -87,14 +87,14 @@ const EmailLayout = ({ children, preview = "" }: EmailLayoutProps) => {
 
 									<Column align="right">
 										<address className="not-italic text-right text-xs">
-											<span className="text-gray-800">Majestic Motors</span>
+											<span className="text-gray-800">Autohive Motors</span>
 											<br />1 Hacker Way, <br />
 											United Kingdom, W1 1AB <br />
 											<Link
 												className="text-blue-600 underline"
 												href={"mailto:hello@majesticmotors.com"}
 											>
-												hello@majesticmotors.com
+												hello@autohivemotors.com
 											</Link>
 										</address>
 									</Column>
