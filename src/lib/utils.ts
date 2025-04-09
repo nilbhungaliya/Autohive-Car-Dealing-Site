@@ -15,6 +15,7 @@ import {
 import { AwaitedPageProps } from "@/config/types";
 import { ClassifiedFilterSchema } from "@/app/schemas/classified.schema";
 import { format, parse } from "date-fns";
+import prettyBytes from "pretty-bytes";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -253,3 +254,11 @@ export function calculatePercentageChange(current: number, previous: number) {
 
 	return ((current - previous) / Math.abs(previous)) * 100;
 }
+
+export const convertToMb = (bytes: number) => {
+	return prettyBytes(bytes, {
+		bits: false,
+		maximumFractionDigits: 1,
+		space: false,
+	});
+};
