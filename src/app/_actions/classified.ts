@@ -51,10 +51,7 @@ export const createClassifiedAction = async (data: StreamableSkeletonProps) => {
 
     const uri = createPngDataUri(thumbHash);
 
-    
-
     const classified = await db.classified.create({
-        // @ts-ignore
       data: {
         slug,
         title,
