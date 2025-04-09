@@ -47,6 +47,7 @@
     "next-themes": "^0.4.6",
     "nextjs-toploader": "^3.8.15",
     "nuqs": "^2.4.1",
+    "pretty-bytes": "^6.1.1",
     "prisma": "^6.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
