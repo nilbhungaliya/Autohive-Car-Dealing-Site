@@ -24,6 +24,7 @@ import { toast } from "sonner";
 import { createClassifiedAction } from "@/app/_actions/classified";
 import { Form } from "@/components/ui/form";
 import { Loader2 } from "lucide-react";
+import { ImageUploader } from "./single-image-uploader";
 
 export const CreateClassifiedDialog = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -133,7 +134,7 @@ export const CreateClassifiedDialog = () => {
 							className="space-y-4 text-black"
 							onSubmit={imageForm.handleSubmit(onImageSubmit)}
 						>
-							{/* <ImageUploader onUploadComplete={handleImageUpload} /> */}
+							<ImageUploader onUploadComplete={handleImageUpload} />
 							<div className="flex justify-between gap-2">
 								<Button
 									variant="outline"
