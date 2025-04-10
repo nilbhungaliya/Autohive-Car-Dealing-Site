@@ -83,79 +83,83 @@ export const CreateClassifiedDialog = () => {
         return;
       }
     });
-  };  
+  };
 
   return (
-    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-			<DialogTrigger asChild>
-				<Button className="ml-4" size="sm">
-					Create New
-				</Button>
-			</DialogTrigger>
-			<DialogContent className={cn("max-w-6xl bg-white")}>
-				<DialogHeader>
-					<DialogTitle className="text-black">Create New Classified</DialogTitle>
-				</DialogHeader>
-				{messages.length ? (
-					<Form {...createForm}>
-						<form
-							className="space-y-4 text-black"
-							onSubmit={createForm.handleSubmit(onCreateSubmit)}
-						>
-							{messages.map((message) => (
-								<div className="w-full" key={message.id}>
-									{message.display}
-								</div>
-							))}
-							<div className="flex justify-between gap-2">
-								<Button
-									variant="outline"
-									type="button"
-									onClick={() => setIsModalOpen(false)}
-								>
-									Cancel
-								</Button>
-								<Button
-									disabled={isCreating || isUploading}
-									type="submit"
-									className="flex items-center gap-x-2"
-								>
-									{isCreating || isUploading ? (
-										<Loader2 className="animate-spin h-4 w-4" />
-									) : null}
-									{isUploading ? "Uploading..." : "Create"}
-								</Button>
-							</div>
-						</form>
-					</Form>
-				) : (
-					<Form {...imageForm}>
-						<form
-							className="space-y-4 text-black"
-							onSubmit={imageForm.handleSubmit(onImageSubmit)}
-						>
-							<ImageUploader onUploadComplete={handleImageUpload} />
-							<div className="flex justify-between gap-2">
-								<Button
-									variant="outline"
-									type="button"
-									onClick={() => setIsModalOpen(false)}
-								>
-									Cancel
-								</Button>
-								<Button
-									disabled={isUploading}
-									type="submit"
-									className="flex items-center gap-x-2"
-								>
-									{isUploading && <Loader2 className="animate-spin h-4 w-4" />}
-									Upload
-								</Button>
-							</div>
-						</form>
-					</Form>
-				)}
-			</DialogContent>
-		</Dialog>
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogTrigger asChild>
+          <Button className="ml-4" size="sm">
+            Create New
+          </Button>
+        </DialogTrigger>
+        <DialogContent className={cn("max-w-6xl bg-white text-black")}>
+          <DialogHeader className="text-black">
+            <DialogTitle>Create New Classified</DialogTitle>
+          </DialogHeader>
+          {messages.length ? (
+            <Form {...createForm}>
+              <form
+                className="space-y-4"
+                onSubmit={createForm.handleSubmit(onCreateSubmit)}
+              >
+                {messages.map((message) => (
+                  <div className="w-full" key={message.id}>
+                    {message.display}
+                  </div>
+                ))}
+                <div className="flex justify-between gap-2">
+                  <Button
+                    className="text-black"
+                    variant="outline"
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    disabled={isCreating || isUploading}
+                    type="submit"
+                    className="flex items-center gap-x-2"
+                  >
+                    {isCreating || isUploading ? (
+                      <Loader2 className="animate-spin h-4 w-4" />
+                    ) : null}
+                    {isUploading ? "Uploading..." : "Create"}
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          ) : (
+            <Form {...imageForm}>
+              <form
+                className="space-y-4"
+                onSubmit={imageForm.handleSubmit(onImageSubmit)}
+              >
+                <ImageUploader onUploadComplete={handleImageUpload} />
+                <div className="flex justify-between gap-2">
+                  <Button
+                    className="text-black"
+                    variant="outline"
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    disabled={isUploading}
+                    type="submit"
+                    className="flex items-center gap-x-2"
+                  >
+                    {isUploading && (
+                      <Loader2 className="animate-spin h-4 w-4" />
+                    )}
+                    Upload
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          )}
+        </DialogContent>
+      </Dialog>
   );
 };
