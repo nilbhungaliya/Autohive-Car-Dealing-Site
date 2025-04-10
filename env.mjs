@@ -19,6 +19,9 @@ export const env = createEnv({
     client:{
         NEXT_PUBLIC_APP_URL: z.string().url(),
         NEXT_PUBLIC_IMGIX_URL: z.string().url(),
+        NEXT_PUBLIC_S3_BUCKET_REGION: z.string(),
+		NEXT_PUBLIC_S3_BUCKET_NAME: z.string(),
+        NEXT_PUBLIC_S3_URL: z.string(),
     },
 
     runtimeEnv:{
@@ -35,5 +38,8 @@ export const env = createEnv({
         FROM_EMAIL_ADDRESS: process.env.FROM_EMAIL_ADDRESS,
         X_AUTH_TOKEN: process.env.FROM_EMAIL_ADDRESS,
         OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+        NEXT_PUBLIC_S3_BUCKET_REGION: process.env.NEXT_PUBLIC_S3_BUCKET_REGION,
+        NEXT_PUBLIC_S3_BUCKET_NAME: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,
+        NEXT_PUBLIC_S3_URL: process.env.NEXT_PUBLIC_S3_URL,
     }
 })
