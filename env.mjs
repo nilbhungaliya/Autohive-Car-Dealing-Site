@@ -14,6 +14,7 @@ export const env = createEnv({
         FROM_EMAIL_ADDRESS: z.string(),
         X_AUTH_TOKEN:z.string(),
         OPENAI_API_KEY: z.string(),
+        GEMINI_API_KEY: z.string(),
     },
 
     client:{
@@ -41,5 +42,6 @@ export const env = createEnv({
         NEXT_PUBLIC_S3_BUCKET_REGION: process.env.NEXT_PUBLIC_S3_BUCKET_REGION,
         NEXT_PUBLIC_S3_BUCKET_NAME: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,
         NEXT_PUBLIC_S3_URL: process.env.NEXT_PUBLIC_S3_URL,
+        GEMINI_API_KEY: process.env.GEMINI_API_KEY,
     }
 })
