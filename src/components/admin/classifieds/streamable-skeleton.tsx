@@ -24,11 +24,9 @@ import {
 import Image from "next/image";
 
 export type StreamableSkeletonProps = Partial<Omit<ClassifiedAI, "make">> & {
-	make?: Make;
-	done?: boolean;
+  make?: Make;
+  done?: boolean;
 };
-
-
 
 export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
   const {
@@ -49,7 +47,7 @@ export const StreamableSkeleton = (props: StreamableSkeletonProps) => {
     done,
   } = props;
   return (
-    <div className="flex flex-col container mx-auto py-12">
+    <div className="flex flex-col mx-auto py-2">
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/2 relative">
           {image ? (
