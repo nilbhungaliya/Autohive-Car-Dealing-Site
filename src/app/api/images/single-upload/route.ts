@@ -7,12 +7,14 @@ import { forbidden } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 
-export const maxDuration = 300;
+// export const maxDuration = 1000;
 
 export const POST = auth(async (req) => {
   if (!req.auth) forbidden();
 
   const formData = await req.formData();
+
+  console.log("formData", formData);
 
   const validated = SingleImageUploadSchema.safeParse(formData);
 
@@ -53,6 +55,7 @@ export const POST = auth(async (req) => {
     });
 
     const url = `${env.NEXT_PUBLIC_S3_URL}/${key}`;
+    console.log("url", url);
     return NextResponse.json({ url }, { status: 200 });
   } catch (error) {
     console.log(`Error uploading file: ${error}`);
