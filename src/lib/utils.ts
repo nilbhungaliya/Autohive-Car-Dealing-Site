@@ -6,6 +6,7 @@ import {
   ClassifiedStatus,
   Colour,
   CurrencyCode,
+  CustomerStatus,
   FuelType,
   OdoUnit,
   Transmission,
@@ -240,6 +241,17 @@ export const generateDateOptions = () => {
 	return dates;
 };
 
+export function generateYears(minYear: number, maxYear?: number): string[] {
+	const currentYear = maxYear ? maxYear : new Date().getFullYear();
+	const years: string[] = [];
+
+	for (let year = currentYear; year >= minYear; year--) {
+		years.push(`${year}`);
+	}
+
+	return years;
+}
+
 export const formDate = (date: string, time: string) => {
   const parsedDate = parse(date, "dd MMM yyyy", new Date());
 	const parsedTime = parse(time, "hh:mm aa", new Date());
@@ -262,3 +274,29 @@ export const convertToMb = (bytes: number) => {
 		space: false,
 	});
 };
+
+export function formatClassifiedStatus(status: ClassifiedStatus) {
+	switch (status) {
+		case ClassifiedStatus.LIVE:
+			return "Live";
+		case ClassifiedStatus.SOLD:
+			return "Sold";
+		case ClassifiedStatus.DRAFT:
+			return "Draft";
+	}
+}
+
+export function formatCustomerStatus(status: CustomerStatus) {
+	switch (status) {
+		case CustomerStatus.COLD:
+			return "Cold";
+		case CustomerStatus.CONTACTED:
+			return "Contacted";
+		case CustomerStatus.INTERESTED:
+			return "Interested";
+		case CustomerStatus.PURCHASED:
+			return "Purchased";
+		case CustomerStatus.SUBSCRIBER:
+			return "Subscriber";
+	}
+}
