@@ -1,19 +1,22 @@
 import { env } from "@/env";
-import { Credentials } from "aws-sdk/lib/core";
+// import { Credentials } from "aws-sdk/lib/core";
 import {
   PutObjectCommand,
   S3Client,
   type PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
 
-const credentials = new Credentials({
-  accessKeyId: env.S3_BUCKET_ACCESS_KEY,
-  secretAccessKey: env.S3_BUCKET_SECRET_KEY,
-});
+// const credentials = new Credentials({
+//   accessKeyId: env.S3_BUCKET_ACCESS_KEY,
+//   secretAccessKey: env.S3_BUCKET_SECRET_KEY,
+// });
 
 export const s3 = new S3Client({
   region: env.NEXT_PUBLIC_S3_BUCKET_REGION,
-  credentials,
+  credentials: {
+    accessKeyId: env.S3_BUCKET_ACCESS_KEY,
+    secretAccessKey: env.S3_BUCKET_SECRET_KEY,
+  },
 });
 
 interface UploadToS3Args {
