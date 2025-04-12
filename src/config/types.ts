@@ -1,3 +1,4 @@
+import { UpdateClassifiedType } from "@/app/schemas/classified.schema";
 import { type Prisma } from "@prisma/client";
 import { ChangeEvent } from "react";
 
@@ -52,3 +53,14 @@ export type PrevState = {
   success: boolean;
   message: string;
 }
+
+
+export interface ProgressArgs {
+	sent: number;
+	total: number;
+	uuid: string;
+	percentage: number;
+	key?: string;
+}
+
+export type ClassifiedImages = UpdateClassifiedType["images"];
