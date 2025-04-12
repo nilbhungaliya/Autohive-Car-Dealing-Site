@@ -32,7 +32,7 @@ export const SelectAdmin = (props: SelectProps) => {
 					value={value ?? ""}
 					className={cn(
 						selectClassName,
-						"disabled:!bg-gray-100 w-full px-3 py-2 border-input border rounded-md focus:outline-hidden custom-select appearance-none pr-12 bg-no-repeat ",
+						"disabled:!bg-gray-100 w-full px-3 py-2 border-input border rounded-md focus:outline-hidden custom-select appearance-none pr-12 bg-no-repeat",
 					)}
 					{...rest}
 				>
