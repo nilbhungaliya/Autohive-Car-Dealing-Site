@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Select } from "@/components/ui/select";
+import { SelectAdmin } from "@/components/ui/selectAdmin";
 
 export const TaxonomySelects = () => {
   const form = useFormContext();
@@ -73,7 +74,7 @@ export const TaxonomySelects = () => {
           <FormItem>
             <FormLabel htmlFor="make">Make</FormLabel>
             <FormControl>
-              <Select
+              <SelectAdmin
                 selectClassName="text-muted/75 bg-primary-800 border-transparent"
                 options={makes}
                 onChange={(e) => handleChange(e, onChange)}
@@ -91,7 +92,7 @@ export const TaxonomySelects = () => {
           <FormItem>
             <FormLabel htmlFor="model">Model</FormLabel>
             <FormControl>
-              <Select
+              <SelectAdmin
                 selectClassName="text-muted/75 bg-primary-800 border-transparent"
                 options={models}
                 onChange={(e) => handleChange(e, onChange)}
@@ -109,7 +110,7 @@ export const TaxonomySelects = () => {
           <FormItem>
             <FormLabel htmlFor="modelVariant">Model Variant</FormLabel>
             <FormControl>
-              <Select
+              <SelectAdmin
                 selectClassName="text-muted/75 bg-primary-800 border-transparent"
                 options={modelVariants}
                 onChange={(e) => handleChange(e, onChange)}
