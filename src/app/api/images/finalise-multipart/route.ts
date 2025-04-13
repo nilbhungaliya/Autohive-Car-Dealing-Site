@@ -7,45 +7,46 @@ import { forbidden } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export const POST = auth(async (req) => {
-	try {
-		if (!req.auth) forbidden();
-		const data = await req.json();
+  try {
+    if (!req.auth) forbidden();
+    const data = await req.json();
 
-		const validated = FinaliseMultipartUploadSchema.safeParse(data);
-		if (!validated.success) return NextResponse.error();
-		const { fileId, fileKey, parts } = validated.data;
-		const { default: mimetype } = await import("mime-types");
-		const mime = mimetype.lookup(fileKey);
+    const validated = FinaliseMultipartUploadSchema.safeParse(data);
+    if (!validated.success) return NextResponse.error();
+    const { fileId, fileKey, parts } = validated.data;
 
-		const { default: orderBy } = await import("lodash.orderby");
+    const { default: mimetype } = await import("mime-types");
+    const mime = mimetype.lookup(fileKey);
 
-		const multipartParams: CompleteMultipartUploadCommandInput = {
-			Bucket: env.NEXT_PUBLIC_S3_BUCKET_NAME,
-			Key: fileKey,
-			UploadId: fileId,
-			MultipartUpload: {
-				// make sure these are in the right order
-				Parts: orderBy(parts, ["PartNumber"], ["asc"]),
-			},
-			...(mime && { ContentType: mime }),
-		};
+    const { default: orderBy } = await import("lodash.orderby");
 
-		const { CompleteMultipartUploadCommand } = await import(
-			"@aws-sdk/client-s3"
-		);
+    const multipartParams: CompleteMultipartUploadCommandInput = {
+      Bucket: env.NEXT_PUBLIC_S3_BUCKET_NAME,
+      Key: fileKey,
+      UploadId: fileId,
+      MultipartUpload: {
+        // make sure these are in the right order
+        Parts: orderBy(parts, ["PartNumber"], ["asc"]),
+      },
+      ...(mime && { ContentType: mime }),
+    };
 
-		const command = new CompleteMultipartUploadCommand(multipartParams);
-		const payload = await s3.send(command);
+    const { CompleteMultipartUploadCommand } = await import(
+      "@aws-sdk/client-s3"
+    );
 
-		return NextResponse.json(
-			{
-				url: payload.Location,
-				key: payload.Key,
-			},
-			{ status: 200 },
-		);
-	} catch (error) {
-		console.log(`Error in finalising multipart upload: ${error}`);
-		return NextResponse.error();
-	}
+    const command = new CompleteMultipartUploadCommand(multipartParams);
+    const payload = await s3.send(command);
+
+    return NextResponse.json(
+      {
+        url: payload.Location,
+        key: payload.Key,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(`Error in finalising multipart upload: ${error}`);
+    return NextResponse.error();
+  }
 });
