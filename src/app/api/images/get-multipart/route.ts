@@ -1,17 +1,15 @@
-import { auth } from "@/auth";
 import { GetMultipartUploadSchema } from "@/app/schemas/image.schema";
-import { NextResponse } from "next/server";
-import { forbidden } from "next/navigation";
-import { UploadPartCommandInput } from "@aws-sdk/client-s3";
+import { auth } from "@/auth";
 import { env } from "@/env";
 import { s3 } from "@/lib/s3";
+import type { UploadPartCommandInput } from "@aws-sdk/client-s3";
+import { forbidden } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export const POST = auth(async (req) => {
   try {
     if (!req.auth) forbidden();
-
     const data = await req.json();
-
     const validated = GetMultipartUploadSchema.safeParse(data);
     if (!validated.success) return NextResponse.error();
     const { fileId, fileKey, parts } = validated.data;
@@ -42,7 +40,6 @@ export const POST = auth(async (req) => {
       signedUrl,
       PartNumber: index + 1,
     }));
-    console.log(partSignedUrlList);
     return NextResponse.json(
       {
         parts: partSignedUrlList,
