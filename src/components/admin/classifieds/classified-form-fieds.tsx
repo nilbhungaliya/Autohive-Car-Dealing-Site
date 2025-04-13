@@ -30,6 +30,21 @@ import {
 import { useFormContext } from "react-hook-form";
 import { TaxonomySelects } from "./taxonomy-selects";
 import { InputSelect } from "@/components/ui/input-select";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const RichTextEditor = dynamic(
+	() => import("./rich-text-editor").then((mod) => mod.RichTextEditor),
+	{
+		ssr: false,
+		loading: () => (
+			<div className="space-y-2 flex flex-col">
+				<Skeleton className="w-24 h-4 bg-primary-800" />
+				<Skeleton className="h-[200px] w-full bg-primary-800" />
+			</div>
+		),
+	},
+);
 
 const years = generateYears(1925);
 
@@ -256,13 +271,13 @@ export const ClassifiedFormFields = () => {
           render={({ field: { onChange, ...rest } }) => (
             <FormItem>
               <FormControl>
-                {/* <RichTextEditor
+                <RichTextEditor
 									label="Description"
 									config={{
 										init: { placeholder: "Enter your vehicle's description" },
 									}}
 									{...rest}
-								/> */}
+								/>
               </FormControl>
               <FormMessage />
             </FormItem>
