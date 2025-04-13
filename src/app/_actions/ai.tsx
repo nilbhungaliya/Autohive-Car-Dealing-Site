@@ -221,7 +221,7 @@ export async function generateClassified(image: string) {
       
       Return a **valid JSON object** with the following fields and data types:
       {
-        "year": number,               // Example: 2022
+        "year": number,               // Example: 2022 it should not be null so give me year if it compulsory
         "make": string,               // Example: "Rolls-Royce"
         "model": string,              // Example: "Ghost"
         "modelVariant": string | null, // Example: "Black Badge" or null
@@ -260,7 +260,7 @@ export async function generateClassified(image: string) {
       You are an expert vehicle classifier. Based on the given image and context, extract and return vehicle details in the following strict JSON format:
 
 {
-  "description": string,               // Max 50 words. No HTML tags.
+  "description": string,               // Max 50 words. No HTML tags. and this desciption should be about car which is in picture and give me all necessary important thing about car in description not give any extra information like this image has this and in this image car in surronded by tree or other things like this only give me infromation about like its brand model and type fuel type capacity and other same things like this
   "vrm": string,                       // Registration mark. Use "UNKNOWN" if missing.
   "odoReading": number,               // Odometer reading.
   "doors": number,                    // Number of doors.
