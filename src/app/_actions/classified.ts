@@ -137,7 +137,7 @@ export const updateClassifiedAction = async (data: UpdateClassifiedType) => {
     const [classified, images] = await db.$transaction(
       async (prisma) => {
         await prisma.image.deleteMany({
-          where: { id: data.id },
+          where: { classifiedId: data.id },
         });
         const imageData = await Promise.all(
           data.images.map(async ({ src }, index) => {
