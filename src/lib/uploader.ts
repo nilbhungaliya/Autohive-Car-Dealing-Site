@@ -111,7 +111,7 @@ export class Uploader {
     }
     if (!this.parts.length) {
       if (!activeConnections) {
-        // this.complete();
+        this.complete();
       }
       return;
     }
@@ -267,7 +267,7 @@ export class Uploader {
             json: imageFinalisationMultipartInput,
           }
         );
-
+        console.log("Complete request result:", result);
         return result;
       }
     } catch (error) {
