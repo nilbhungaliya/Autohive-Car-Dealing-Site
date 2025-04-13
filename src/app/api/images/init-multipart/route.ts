@@ -31,12 +31,6 @@ export const POST = auth(async (req) => {
     const { CreateMultipartUploadCommand } = await import("@aws-sdk/client-s3");
     const command = new CreateMultipartUploadCommand(multipartParams);
     const multipartUpload = await s3.send(command);
-
-    console.log("Initiated multipart upload:", {
-      fileId: multipartUpload.UploadId,
-      fileKey: key,
-    });
-
     return NextResponse.json(
       {
         fileId: multipartUpload.UploadId,
