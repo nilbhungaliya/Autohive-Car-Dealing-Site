@@ -1,3 +1,5 @@
+"use client"
+
 import { UpdateClassifiedType } from "@/app/schemas/classified.schema";
 import { ClassifiedImages, ProgressArgs } from "@/config/types";
 import { env } from "@/env";
@@ -27,11 +29,15 @@ export const MultiImageUploader = (props: MultiImageUploaderProps) => {
 
   const form = useFormContext<UpdateClassifiedType>();
 
+  // console.log(form.control);
+
   const { fields, replace } = useFieldArray({
     control: form.control,
     name: "images",
     keyName: "uuid",
   });
+
+  // console.log(fields);
 
   const [items, setItems] = useState<ClassifiedImages>(fields);
   const [progress, setProgress] = useState<ImageProgress[]>([]);
@@ -114,7 +120,7 @@ export const MultiImageUploader = (props: MultiImageUploaderProps) => {
             replace(clone.map((item) => ({ src: item.src, alt: item.alt })));
             setIsUploading(false);
           });
-
+        console.log(uploader);
         uploader.start();
       }
     },
@@ -125,16 +131,16 @@ export const MultiImageUploader = (props: MultiImageUploaderProps) => {
     setItems((prev) => prev.filter((item) => item.id !== i));
     replace(items.filter((item) => item.id !== i));
   };
-  
+
   return (
     <div className={cn(className, "space-y-3 mt-1")}>
-    <DragAndDrop
-      items={items}
-      setFiles={setFiles}
-      isUploading={isUploading}
-      setIsUploading={setIsUploading}
-    />
-    <div className="relative overflow-hidden rounded-lg">
+      <DragAndDrop
+        items={items}
+        setFiles={setFiles}
+        isUploading={isUploading}
+        setIsUploading={setIsUploading}
+      />
+      <div className="relative overflow-hidden rounded-lg">
       <DragAndDropContext
         replace={handleItemsUpdate}
         items={items}
@@ -151,6 +157,6 @@ export const MultiImageUploader = (props: MultiImageUploaderProps) => {
         )}
       />
     </div>
-  </div>
+    </div>
   );
 };
