@@ -17,6 +17,7 @@ import { Loader2 } from "lucide-react";
 import { formatClassifiedStatus } from "@/lib/utils";
 import { ClassifiedFormFields } from "./classified-form-fieds";
 import { SelectAdmin } from "@/components/ui/selectAdmin";
+import { MultiImageUploader } from "./multiImage-uploader";
 
 interface ClassifiedFormProps {
   classified: ClassifiedWithImages;
@@ -100,7 +101,7 @@ export const ClassifiedForm = ({ classified }: ClassifiedFormProps) => {
                     Images (up to {MAX_IMAGES})
                   </FormLabel>
                   <FormControl>
-                    {/* <MultiImageUploader name={name} onChange={onChange} /> */}
+                    <MultiImageUploader name={name} onChange={onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
