@@ -41,7 +41,7 @@ export const TaxonomySelects = () => {
         modelVariants: FilterOptions<string, string>;
       }>(url.toString());
 
-      console.log({ data });
+      // console.log({ data });
 
       setMakes(data.makes);
       setModels(data.models);
