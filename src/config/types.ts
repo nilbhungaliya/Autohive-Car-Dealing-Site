@@ -1,5 +1,5 @@
 import { UpdateClassifiedType } from "@/app/schemas/classified.schema";
-import { type Prisma } from "@prisma/client";
+import { Classified, type Prisma } from "@prisma/client";
 import { ChangeEvent } from "react";
 
 type Params = { [x: string]: string | string[] };
@@ -20,23 +20,29 @@ export type ClassifiedWithImages = Prisma.ClassifiedGetPayload<{
   };
 }>;
 
-export enum MultiStepFormEnum{
+export type CustomerWithClassified = Prisma.CustomerGetPayload<{
+  include: {
+    classified: true;
+  };
+}>;
+
+export enum MultiStepFormEnum {
   WELCOME = 1,
   SELECT_DATE = 2,
   SUBMIT_DETAILS = 3,
 }
 
-export interface Favourites{
+export interface Favourites {
   ids: number[];
 }
 
 export interface TaxonomyFiltersProps extends AwaitedPageProps {
-	handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export type FilterOptions<LType, VType> = Array<{
-	label: LType;
-	value: VType;
+  label: LType;
+  value: VType;
 }>;
 
 export interface SidebarProps extends AwaitedPageProps {
@@ -44,23 +50,49 @@ export interface SidebarProps extends AwaitedPageProps {
 }
 
 export interface MultiStepFormComponentProps extends AwaitedPageProps {
-	classified: Prisma.ClassifiedGetPayload<{
-		include: { make: true };
-	}>;
+  classified: Prisma.ClassifiedGetPayload<{
+    include: { make: true };
+  }>;
 }
 
 export type PrevState = {
   success: boolean;
   message: string;
-}
-
+};
 
 export interface ProgressArgs {
-	sent: number;
-	total: number;
-	uuid: string;
-	percentage: number;
-	key?: string;
+  sent: number;
+  total: number;
+  uuid: string;
+  percentage: number;
+  key?: string;
 }
 
 export type ClassifiedImages = UpdateClassifiedType["images"];
+
+export type ClassifiedKeys = keyof Pick<
+  Classified,
+  | "status"
+  | "title"
+  | "vrm"
+  | "id"
+  | "views"
+  | "year"
+  | "colour"
+  | "price"
+  | "createdAt"
+>;
+
+export type CustomerKeys = keyof Pick<
+  Prisma.CustomerGetPayload<{ include: { classified: true } }>,
+  | "id"
+  | "email"
+  | "mobile"
+  | "firstName"
+  | "lastName"
+  | "updatedAt"
+  | "createdAt"
+  | "status"
+  | "bookingDate"
+  | "classified"
+>;
