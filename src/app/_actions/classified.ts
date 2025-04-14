@@ -196,9 +196,27 @@ export const updateClassifiedAction = async (data: UpdateClassifiedType) => {
     return { success: false, message: "Something went wrong" };
   }
   if (success) {
-		revalidatePath(routes.admin.classifieds);
-		redirect(routes.admin.classifieds);
-	} else {
-		return { success: false, message: "Failed to update classified" };
-	}
+    revalidatePath(routes.admin.classifieds);
+    redirect(routes.admin.classifieds);
+  } else {
+    return { success: false, message: "Failed to update classified" };
+  }
+};
+
+export const deleteClassifiedAction = async (id: number) => {
+  try {
+    const session = await auth();
+    if (!session) Forbidden();
+    await db.classified.delete({
+      where: { id },
+    });
+    revalidatePath(routes.admin.classifieds);
+    return { success: true, message: "Classified deleted" };
+  } catch (error) {
+    console.log("Error deleting classified: ", { error });
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
+    return { success: false, message: "Something went wrong" };
+  }
 };
