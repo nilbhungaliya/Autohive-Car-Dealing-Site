@@ -2,8 +2,10 @@
 
 import db from "@/lib/db";
 import { CustomerStatus } from "@prisma/client";
-import { PrevState } from "@/config/types";
+import { PrismaClientKnownRequestError, PrismaClientValidationError } from "@prisma/client/runtime/library";
+import { z } from "zod";
 import { SubscribeSchema } from "@/app/schemas/subscribe.schema";
+import { PrevState } from "@/config/types";
 
 export const subscribeAction = async (_: PrevState, formData: FormData) => {
   try {
@@ -36,15 +38,15 @@ export const subscribeAction = async (_: PrevState, formData: FormData) => {
 
     return{success: true, message: "Subscribed successfully!"};
   } catch (error) {
-    // if (error instanceof PrismaClientKnownRequestError) {
-    //   return { success: false, message: error.message };
-    // }
-    // if (error instanceof PrismaClientValidationError) {
-    //     return { success: false, message: error.message };
-    // }
-    // if (error instanceof Error) {
-    //     return { success: false, message: error.message };
-    // }
+    if (error instanceof PrismaClientKnownRequestError) {
+      return { success: false, message: error.message };
+    }
+    if (error instanceof PrismaClientValidationError) {
+        return { success: false, message: error.message };
+    }
+    if (error instanceof Error) {
+        return { success: false, message: error.message };
+    }
     return { success: false, message: "Something went wrong" };
   }
 };
