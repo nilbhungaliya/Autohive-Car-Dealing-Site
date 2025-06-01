@@ -2,10 +2,8 @@
 
 import db from "@/lib/db";
 import { CustomerStatus } from "@prisma/client";
-import { PrismaClientKnownRequestError, PrismaClientValidationError } from "@prisma/client/runtime/library";
-import { z } from "zod";
-import { SubscribeSchema } from "../schemas/subscribe.schema";
 import { PrevState } from "@/config/types";
+import { SubscribeSchema } from "@/app/schemas/subscribe.schema";
 
 export const subscribeAction = async (_: PrevState, formData: FormData) => {
   try {
