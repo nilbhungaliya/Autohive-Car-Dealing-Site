@@ -85,9 +85,9 @@
 
 
 import { auth } from "@/auth";
+import { routes } from "@/config/routes";
 import { env } from "@/env";
 import { NextResponse } from "next/server";
-import { routes } from "./config/routes";
 
 function setRequestHeaders(requestHeaders: Headers) {
 	const nonce = Buffer.from(crypto.randomUUID()).toString("base64");

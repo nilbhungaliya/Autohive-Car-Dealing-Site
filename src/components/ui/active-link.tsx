@@ -2,14 +2,15 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 interface ActiveLinkProps {
 	href: string;
 	children: ReactNode;
 	className?: string;
 }
-export const ActiveLink = (props: ActiveLinkProps) => {
+
+const ActiveLinkContent = (props: ActiveLinkProps) => {
 	const { href, children, className } = props;
 	const pathname = usePathname();
 	const isActive = href === pathname;
@@ -26,5 +27,17 @@ export const ActiveLink = (props: ActiveLinkProps) => {
 		>
 			{children}
 		</Link>
+	);
+};
+
+export const ActiveLink = (props: ActiveLinkProps) => {
+	return (
+		<Suspense fallback={
+			<div className={cn(props.className, "animate-pulse bg-gray-700 rounded")}>
+				{props.children}
+			</div>
+		}>
+			<ActiveLinkContent {...props} />
+		</Suspense>
 	);
 };

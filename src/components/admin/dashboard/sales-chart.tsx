@@ -9,7 +9,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { formatPrice } from "@/lib/utils";
-import { use } from "react";
+import { Suspense, use } from "react";
 import {
 	Bar,
 	BarChart,
@@ -24,7 +24,7 @@ interface SalesChartProps {
 	data: ChartDataType;
 }
 
-export const SalesChart = (props: SalesChartProps) => {
+const SalesChartContent = (props: SalesChartProps) => {
 	const { data } = props;
 
 	const chartData = use(data);
@@ -72,6 +72,24 @@ export const SalesChart = (props: SalesChartProps) => {
 				</ResponsiveContainer>
 			</CardContent>
 		</Card>
+	);
+};
+
+export const SalesChart = (props: SalesChartProps) => {
+	return (
+		<Suspense fallback={
+			<Card className="mb-6 bg-gray-800 border-gray-700 animate-pulse">
+				<CardHeader>
+					<div className="h-6 w-48 bg-gray-700 rounded" />
+					<div className="h-4 w-64 bg-gray-700 rounded mt-2" />
+				</CardHeader>
+				<CardContent>
+					<div className="h-[500px] w-full bg-gray-700 rounded" />
+				</CardContent>
+			</Card>
+		}>
+			<SalesChartContent {...props} />
+		</Suspense>
 	);
 };
 

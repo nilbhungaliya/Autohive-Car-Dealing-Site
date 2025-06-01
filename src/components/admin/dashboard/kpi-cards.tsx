@@ -7,7 +7,7 @@ import {
   TrendingUpIcon,
   UsersIcon,
 } from "lucide-react";
-import { use } from "react";
+import { Suspense, use } from "react";
 
 type KpiCardDataProps = {
   data: DashboardDataType;
@@ -23,9 +23,8 @@ interface DashboardItem {
   style: Intl.NumberFormatOptions["style"];
 }
 
-export const KpiCards = (props: KpiCardDataProps) => {
+const KpiCardsContent = (props: KpiCardDataProps) => {
   const { data } = props;
-  //   console.log({ data });
 
   const {
     totalSales,
@@ -37,17 +36,6 @@ export const KpiCards = (props: KpiCardDataProps) => {
     carsSoldPercentageChange,
     newCustomersPercentageChange,
   } = use(data);
-
-  //   console.log({
-  //     totalSales,
-  //     carsSoldThisMonth,
-  //     newCustomersThisMonth,
-  //     conversionRate,
-  //     conversionRatePercentageChange,
-  //     salesPercentageChange,
-  //     carsSoldPercentageChange,
-  //     newCustomersPercentageChange,
-  //   });
 
   const dashboardData: DashboardItem[] = [
     {
@@ -94,6 +82,31 @@ export const KpiCards = (props: KpiCardDataProps) => {
         <KPICard key={item.id} {...item} />
       ))}
     </div>
+  );
+};
+
+export const KpiCards = (props: KpiCardDataProps) => {
+  return (
+    <Suspense fallback={
+      <div className="grid gap-4 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
+        {[1, 2, 3, 4].map((id) => (
+          <Card key={id} className="bg-gray-800 border-gray-700 animate-pulse">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <div className="flex flex-col space-y-1">
+                <div className="h-6 w-24 bg-gray-700 rounded" />
+                <div className="h-4 w-32 bg-gray-700 rounded" />
+              </div>
+              <div className="h-6 w-6 bg-gray-700 rounded" />
+            </CardHeader>
+            <CardContent>
+              <div className="h-8 w-24 bg-gray-700 rounded" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    }>
+      <KpiCardsContent {...props} />
+    </Suspense>
   );
 };
 

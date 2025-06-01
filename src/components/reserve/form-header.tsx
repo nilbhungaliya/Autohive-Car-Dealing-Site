@@ -2,8 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export const FormHeader = () => {
+const FormHeaderContent = () => {
 	const params = useSearchParams();
 	const steps = [
 		{ id: "1", title: "Welcome" },
@@ -34,5 +35,13 @@ export const FormHeader = () => {
 				))}
 			</div>
 		</div>
+	);
+};
+
+export const FormHeader = () => {
+	return (
+		<Suspense fallback={<div className="h-16 bg-primary animate-pulse" />}>
+			<FormHeaderContent />
+		</Suspense>
 	);
 };

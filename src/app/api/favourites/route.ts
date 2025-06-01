@@ -1,5 +1,5 @@
 import { routes } from "@/config/routes";
-import { favourites } from "@/config/types";
+import { Favourites } from "@/config/types";
 import { redis } from "@/lib/redis-store";
 import { setSourceId } from "@/lib/source-id";
 import { revalidatePath } from "next/cache";
@@ -25,9 +25,9 @@ export const POST = async (req: NextRequest) => {
   const sourceId = await setSourceId();
 
   //   get the favourites from the redis store
-  const storedFavourites = await redis.get<favourites>(sourceId);
+  const storedFavourites = await redis.get<Favourites>(sourceId);
 
-  const favourites: favourites = storedFavourites || { ids: [] };
+  const favourites: Favourites = storedFavourites || { ids: [] };
 
   if (favourites.ids.includes(data.id)) {
     //   remove the id from the favourites
