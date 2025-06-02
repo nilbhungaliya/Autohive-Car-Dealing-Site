@@ -1,4 +1,4 @@
-import { InitialiseMultipartUploadSchema } from "@/app/schemas/image.schema";
+import { InitialiseMultipartUploadSchema } from "@/app/schemas/image-schema";
 import { auth } from "@/auth";
 import { env } from "@/env";
 import { s3 } from "@/lib/s3";

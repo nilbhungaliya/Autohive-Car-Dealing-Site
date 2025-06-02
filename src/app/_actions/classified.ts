@@ -11,7 +11,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import slugify from "slugify";
 import { createPngDataUri } from "unlazy/thumbhash";
-import { UpdateClassifiedType } from "../schemas/classified.schema";
+import { UpdateClassifiedType } from "../schemas/classified-schema";
 import Forbidden from "../api/forbidden";
 
 export const createClassifiedAction = async (data: StreamableSkeletonProps) => {

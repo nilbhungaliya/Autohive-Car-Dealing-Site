@@ -3,7 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import db from "@/lib/db";
 import { SESSION_MAX_AGE } from "@/config/constants";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { SignInSchema } from "@/app/schemas/auth.schema";
+import { SignInSchema } from "@/app/schemas/auth-schema";
 import { bcryptPasswordCompare } from "@/lib/bcrypt";
 import ResendProvider from "next-auth/providers/resend";
 import { routes } from "@/config/routes";

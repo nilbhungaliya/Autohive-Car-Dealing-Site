@@ -1,10 +1,10 @@
-import { validatePagination } from "@/app/schemas/pagination.schema";
-import { AdminCustomerFilterSchema } from "@/app/schemas/table-filter.schema";
+import { validatePagination } from "@/app/schemas/pagination-schema";
+import { AdminCustomerFilterSchema } from "@/app/schemas/table-filter-schema";
 import {
 	CustomersTableSortSchema,
 	type CustomersTableSortType,
 	validateSortOrder,
-} from "@/app/schemas/table-sort.schema";
+} from "@/app/schemas/table-sort-schema";
 import { CustomersTableHeader } from "@/components/admin/customers/customer-table-header";
 import { CustomerTableRow } from "@/components/admin/customers/customer-table-row";
 import { AdminCustomersHeader } from "@/components/admin/customers/customers-header";

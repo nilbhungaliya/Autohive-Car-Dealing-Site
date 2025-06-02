@@ -1,4 +1,4 @@
-import { PageSchema } from "@/app/schemas/page.schema";
+import { PageSchema } from "@/app/schemas/page-schema";
 import { ClassifiedList } from "@/components/inventory/classified-list";
 import { DialogFilters } from "@/components/inventory/dialog-filter";
 import { InventorySkeleton } from "@/components/inventory/inventory-skeleton";

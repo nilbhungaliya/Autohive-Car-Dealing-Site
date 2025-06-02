@@ -14,7 +14,7 @@ import {
   type Prisma,
 } from "@prisma/client";
 import { AwaitedPageProps } from "@/config/types";
-import { ClassifiedFilterSchema } from "@/app/schemas/classified.schema";
+import { ClassifiedFilterSchema } from "@/app/schemas/classified-schema";
 import { format, parse } from "date-fns";
 import prettyBytes from "pretty-bytes";
 

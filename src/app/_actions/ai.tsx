@@ -152,7 +152,7 @@ import {
 import {
   ClassifiedDetailsAISchema,
   ClassifiedTaxonomyAISchema,
-} from "../schemas/classified-ai.schema";
+} from "../schemas/classified-ai-schema";
 import { mapToTaxonomyOrCreate } from "@/lib/ai-utils";
 import db from "@/lib/db";
 import {

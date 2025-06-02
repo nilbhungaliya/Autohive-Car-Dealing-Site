@@ -1,4 +1,4 @@
-import { SingleImageUploadSchema } from "@/app/schemas/image.schema";
+import { SingleImageUploadSchema } from "@/app/schemas/image-schema";
 import { auth } from "@/auth";
 import { MAX_IMAGE_SIZE } from "@/config/constants";
 import { env } from "@/env";

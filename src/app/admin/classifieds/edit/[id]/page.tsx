@@ -1,4 +1,4 @@
-import { validateIdSchema } from "@/app/schemas/id.schema";
+import { validateIdSchema } from "@/app/schemas/id-schema";
 import { ClassifiedForm } from "@/components/admin/classifieds/classified-form";
 import { routes } from "@/config/routes";
 import { PageProps } from "@/config/types";

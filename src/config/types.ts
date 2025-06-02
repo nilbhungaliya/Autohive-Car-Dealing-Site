@@ -1,4 +1,4 @@
-import { UpdateClassifiedType } from "@/app/schemas/classified.schema";
+import { UpdateClassifiedType } from "@/app/schemas/classified-schema";
 import { Classified, type Prisma } from "@prisma/client";
 import { ChangeEvent } from "react";
 

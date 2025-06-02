@@ -5,7 +5,7 @@ import {
   CreateCustomerSchema,
   CreateCustomerSchemaType,
   UpdateCustomerSchema,
-} from "../schemas/customer.schema";
+} from "../schemas/customer-schema";
 import { routes } from "@/config/routes";
 import { revalidatePath } from "next/cache";
 import { CustomerStatus } from "@prisma/client";

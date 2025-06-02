@@ -1,6 +1,6 @@
 "use server";
 import { signIn } from "@/auth";
-import { SignInSchema } from "../schemas/auth.schema";
+import { SignInSchema } from "../schemas/auth-schema";
 import { routes } from "@/config/routes";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { PrevState } from "@/config/types";

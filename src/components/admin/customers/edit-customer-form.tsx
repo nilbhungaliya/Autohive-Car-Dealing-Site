@@ -3,7 +3,7 @@ import { updateCustomerAction } from "@/app/_actions/customer";
 import {
   EditCustomerSchema,
   type EditCustomerType,
-} from "@/app/schemas/customer.schema";
+} from "@/app/schemas/customer-schema";
 import { formatCustomerStatus } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type Customer, CustomerStatus } from "@prisma/client";

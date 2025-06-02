@@ -1,6 +1,6 @@
 "use client";
 import type { AI } from "@/app/_actions/ai";
-import { SingleImageSchema, SingleImageType } from "@/app/schemas/image.schema";
+import { SingleImageSchema, SingleImageType } from "@/app/schemas/image-schema";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -18,7 +18,7 @@ import { StreamableSkeletonProps } from "./streamable-skeleton";
 import {
   ClassifiedAISchema,
   ClassifiedAI,
-} from "@/app/schemas/classified-ai.schema";
+} from "@/app/schemas/classified-ai-schema";
 import { z } from "zod";
 import { toast } from "sonner";
 import { createClassifiedAction } from "@/app/_actions/classified";

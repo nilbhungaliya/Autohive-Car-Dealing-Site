@@ -1,4 +1,4 @@
-import type { ClassifiedAI } from "@/app/schemas/classified-ai.schema";
+import type { ClassifiedAI } from "@/app/schemas/classified-ai-schema";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   formatBodyType,

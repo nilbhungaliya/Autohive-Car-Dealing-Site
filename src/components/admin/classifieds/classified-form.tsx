@@ -3,7 +3,7 @@ import { updateClassifiedAction } from "@/app/_actions/classified";
 import {
   updateClassifiedSchema,
   UpdateClassifiedType,
-} from "@/app/schemas/classified.schema";
+} from "@/app/schemas/classified-schema";
 import type { ClassifiedWithImages } from "@/config/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ClassifiedStatus, CurrencyCode, OdoUnit } from "@prisma/client";

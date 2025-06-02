@@ -2,7 +2,7 @@
 import {
   SubmitDetailsSchema,
   SubmitDetailsSchemaType,
-} from "@/app/schemas/customer.schema";
+} from "@/app/schemas/customer-schema";
 import { MultiStepFormComponentProps, MultiStepFormEnum } from "@/config/types";
 import { formDate } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";

@@ -4,7 +4,7 @@ import { subscribeAction } from "@/app/_actions/subscribe";
 import { useActionState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubscribeSchema } from "@/app/schemas/subscribe.schema";
+import { SubscribeSchema } from "@/app/schemas/subscribe-schema";
 import {
   Form,
   FormControl,

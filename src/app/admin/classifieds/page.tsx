@@ -1,10 +1,10 @@
-import { validatePagination } from "@/app/schemas/pagination.schema";
-import { AdminClassifiedFilterSchema } from "@/app/schemas/table-filter.schema";
+import { validatePagination } from "@/app/schemas/pagination-schema";
+import { AdminClassifiedFilterSchema } from "@/app/schemas/table-filter-schema";
 import {
   ClassifiedsTableSortSchema,
   ClassifiedsTableSortType,
   validateSortOrder,
-} from "@/app/schemas/table-sort.schema";
+} from "@/app/schemas/table-sort-schema";
 import { AdminTableFooter } from "@/components/shared/admin-table-footer";
 import { ClassifiedsTableRow } from "@/components/admin/classifieds/classified-table-row";
 import { AdminClassifiedsHeader } from "@/components/admin/classifieds/classifieds-header";

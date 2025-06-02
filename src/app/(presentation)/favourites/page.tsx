@@ -1,4 +1,4 @@
-import { PageSchema } from "@/app/schemas/page.schema";
+import { PageSchema } from "@/app/schemas/page-schema";
 import { ClassifiedCard } from "@/components/inventory/classified-card";
 import { CustomPagination } from "@/components/shared/custom-pagination";
 import { CLASSIFIEDS_PER_PAGE } from "@/config/constants";

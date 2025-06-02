@@ -2,7 +2,7 @@
 import {
   SelectDateSchema,
   type SelectDateType,
-} from "@/app/schemas/MultiStepform.schema";
+} from "@/app/schemas/MultiStepform-schema";
 import { routes } from "@/config/routes";
 import { MultiStepFormComponentProps, MultiStepFormEnum } from "@/config/types";
 import { env } from "@/env";

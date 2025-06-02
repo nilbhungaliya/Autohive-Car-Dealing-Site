@@ -3,7 +3,7 @@
 import {
   OneTimePasswordSchema,
   type OtpSchemaType,
-} from "@/app/schemas/otp.schema";
+} from "@/app/schemas/otp-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";

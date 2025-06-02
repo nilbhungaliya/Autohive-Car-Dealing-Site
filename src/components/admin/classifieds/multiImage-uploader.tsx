@@ -1,6 +1,6 @@
 "use client"
 
-import { UpdateClassifiedType } from "@/app/schemas/classified.schema";
+import { UpdateClassifiedType } from "@/app/schemas/classified-schema";
 import { ClassifiedImages, ProgressArgs } from "@/config/types";
 import { env } from "@/env";
 import { generateThumbHashFromFile } from "@/lib/thumbhash-client";

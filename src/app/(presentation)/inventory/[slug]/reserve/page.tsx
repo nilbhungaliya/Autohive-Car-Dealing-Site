@@ -1,4 +1,4 @@
-import { MultiStepFormSchema } from "@/app/schemas/MultiStepform.schema";
+import { MultiStepFormSchema } from "@/app/schemas/MultiStepform-schema";
 import { SelectDate } from "@/components/reserve/select-date";
 import { SubmitDetails } from "@/components/reserve/submit-details";
 import { Welcome } from "@/components/reserve/welcome";
