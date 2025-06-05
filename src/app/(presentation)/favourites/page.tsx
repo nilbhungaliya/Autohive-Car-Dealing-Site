@@ -38,7 +38,7 @@ export default async function FavouritesPage(props: PageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8 min-h-[80dvh]">
-      <h1 className="text-3xl font-bold mb-6 text-black">Your Favourite Classifieds</h1>
+      <h1 className="text-3xl font-bold mb-6 text-foreground">Your Favourite Classifieds</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         {classifieds.map((classified) => {
           return (

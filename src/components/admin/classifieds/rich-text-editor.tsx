@@ -65,12 +65,12 @@ export const RichTextEditor = (props: TextEditorProps) => {
     // Add custom styles for links
     content_style: `
         a {
-            color: #3b82f6;
+            color: var(--primary);
             text-decoration: underline;
             cursor: pointer;
         }
         a:hover {
-            color: #2563eb;
+            color: var(--primary-foreground);
         }
     `,
     ...(config?.init && { ...config.init }),

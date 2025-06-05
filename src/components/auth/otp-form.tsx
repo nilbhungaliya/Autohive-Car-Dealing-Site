@@ -72,12 +72,12 @@ export const OtpForm = () => {
   }, [isCodePending]);
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex w-full flex-1 justify-center px-6 pt-10 lg:items-center lg:pt-0 text-black">
+    <div className="min-h-[calc(100vh-4rem)] flex w-full flex-1 justify-center px-6 pt-10 lg:items-center lg:pt-0 text-foreground">
       <div className="flex w-full max-w-lg flex-col">
         <h3 className="mb-4 text-4xl lg:text-5xl text-center">
           One Time Password
         </h3>
-        <p className="mb-12 text-center text-slate-500">
+        <p className="mb-12 text-center text-muted-foreground">
           Enter the six digit code sent to your email
         </p>
 
@@ -103,7 +103,7 @@ export const OtpForm = () => {
             <div className="flex w-full items-center justify-center">
               <button
                 type="button"
-                className="flex items-centewr gap-2.5 text-base font-medium text-slate-600 transition-colors duration-200 hover:text-primary group cursor-pointer"
+                className="flex items-centewr gap-2.5 text-base font-medium text-muted-foreground transition-colors duration-200 hover:text-primary group cursor-pointer"
                 onClick={sendCode}
                 disabled={isCodePending}
               >

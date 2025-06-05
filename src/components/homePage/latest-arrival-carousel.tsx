@@ -16,7 +16,7 @@ interface LatestArrivalsCarouselProps {
 const Swiper = dynamic(() => import("swiper/react").then((mod) => mod.Swiper), {
   ssr: false,
   loading: () => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-8 bg-background">
       {[1, 2, 3, 4].map((i) => (
         <ClassifiedCardSkeleton key={i} />
       ))}
@@ -28,7 +28,7 @@ export const LatestArrivalsCarousel = (props: LatestArrivalsCarouselProps) => {
   const { classifieds, favourites } = props;
 
   return (
-    <div className="mt-8 relative text-white">
+    <div className="mt-8 relative text-foreground bg-background">
       <Swiper
         navigation={{
           prevEl: ".swiper-button-prev",
@@ -60,8 +60,8 @@ export const LatestArrivalsCarousel = (props: LatestArrivalsCarouselProps) => {
         })}
       </Swiper>
       <SwiperButtons
-        prevClassName="-left-16 border border-2 border-border hidden lg:flex"
-        nextClassName="-right-16 border border-2 border-border hidden lg:flex"
+        prevClassName="-left-16 border border-2 border-border bg-background text-foreground hidden lg:flex"
+        nextClassName="-right-16 border border-2 border-border bg-background text-foreground hidden lg:flex"
       />
     </div>
   );

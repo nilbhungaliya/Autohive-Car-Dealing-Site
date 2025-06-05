@@ -10,7 +10,7 @@ import { ClassifiedBadgeMap } from "@/config/constants";
 
 export const ClassifiedsTableRow = (classified: ClassifiedWithImages) => {
 	return (
-		<TableRow className="text-muted/75 border-white/5 hover:bg-primary-300">
+		<TableRow className="text-muted-foreground border-white/5 hover:bg-primary-300">
 			<TableCell className="font-medium">{classified.id}</TableCell>
 			<TableCell className="p-0">
 				<Image

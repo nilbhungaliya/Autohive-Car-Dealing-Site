@@ -88,7 +88,7 @@ export const ClassifiedForm = ({ classified }: ClassifiedFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(classifiedFormSubmit)}>
-        <h1 className="text-3xl font-bold mb-6 text-muted">Upload Vehicle</h1>
+        <h1 className="text-3xl font-bold mb-6 text-foreground">Upload Vehicle</h1>
         <div className="w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ClassifiedFormFields />
           <div className="space-y-6">
@@ -97,7 +97,7 @@ export const ClassifiedForm = ({ classified }: ClassifiedFormProps) => {
               name="images"
               render={({ field: { name, onChange } }) => (
                 <FormItem>
-                  <FormLabel className="text-muted" htmlFor="images">
+                  <FormLabel className="text-muted-foreground" htmlFor="images">
                     Images (up to {MAX_IMAGES})
                   </FormLabel>
                   <FormControl>
@@ -113,7 +113,7 @@ export const ClassifiedForm = ({ classified }: ClassifiedFormProps) => {
               name="status"
               render={({ field: { ref, ...rest } }) => (
                 <FormItem>
-                  <FormLabel className="text-muted" htmlFor="status">
+                  <FormLabel className="text-muted-foreground" htmlFor="status">
                     Status
                   </FormLabel>
                   <FormControl>
@@ -121,10 +121,10 @@ export const ClassifiedForm = ({ classified }: ClassifiedFormProps) => {
                       options={Object.values(ClassifiedStatus).map((value) => ({
                         label: formatClassifiedStatus(value),
                         value,
-                        className:"bg-primary-800 text-white"
+                        className:"bg-primary text-foreground"
                       }))}
                       noDefault={false}
-                      selectClassName="bg-primary-800 border-transparent text-muted/75 text-white"
+                      selectClassName="bg-primary border-transparent text-primary-foreground"
                       {...rest}
                     />
                   </FormControl>

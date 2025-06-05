@@ -69,59 +69,58 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="bg-white relative rounded-md shadow-md overflow-hidden flex flex-col"
+          className="bg-card text-card-foreground relative rounded-xl shadow-sm overflow-hidden flex flex-col border hover:shadow-md transition-all duration-200"
         >
-          <div className="aspect-3/2 relative">
-            <Link href={routes.singleClassified(classified.slug)}>
+          <div className="aspect-[4/3] relative bg-muted/30">
+            <Link href={routes.singleClassified(classified.slug)} className="block w-full h-full">
               <ImgixImage
                 placeholder="blur"
                 blurDataURL={classified.images[0].blurhash}
                 src={classified.images[0].src}
                 alt={classified.images[0].alt}
-                className="object-cover"
+                className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
                 fill={true}
-                quality={25}
+                quality={75}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </Link>
             <FavouriteButton isFavourite={isFavourite} setIsFavourite={setIsFavourite} id={classified.id}/>
-            <div className="absolute top-2.5 right-3.5 bg-primary text-slate-50 font-bolt px-2 py-1 rounded">
-              <p className="text-xs lg:text-base xl:text-lg font-semibold">
-                {classified.price}
+            <div className="absolute top-3 right-3 bg-primary/95 text-primary-foreground font-medium px-3 py-1.5 rounded-lg shadow-md">
+              <p className="text-sm lg:text-base font-semibold">
+              &#8377;{classified.price}
               </p>
             </div>
           </div>
-          <div className="p-4 flex flex-col space-y-3">
+          <div className="p-5 flex flex-col space-y-4">
             <Link
               href={routes.singleClassified(classified.slug)}
-              className="text-black text-sm md:text-base lg:text-lg font-semibold line-clamp-1 transition-colors hover:text-primary"
+              className="text-foreground text-base lg:text-lg font-semibold line-clamp-1 transition-colors hover:text-primary"
             >
               {classified.title}
             </Link>
             {classified?.description && (
-              <div className="text-xs md:text-sm xl:text-base text-gray-500 line-clamp-2">
+              <div className="text-sm text-muted-foreground/90 line-clamp-2">
                 <HtmlParser html={classified.description} />
-                &nbsp;{" "}
-                {/* Used for equal spacing across each card in the grid */}
               </div>
             )}
 
-            <ul className="xl:grid-cols-2 xl:grid-rows-2 xl:pb-2 md:text-xs text-gray-600 grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-2 lg:grid-rows-4 items-center justify-between w-full gap-1">
+            <ul className="grid grid-cols-2 gap-3 text-muted-foreground">
               {getKeyClassifiedInfo(classified)
                 .filter((v) => v.value)
                 .map(({ id, icon, value }) => (
                   <li
                     key={id}
-                    className="text-xs self-baseline flex  items-center gap-x-1.5"
+                    className="text-sm flex items-center gap-x-2"
                   >
-                    {icon}
-                    {value}
+                    <span className="text-primary/80">{icon}</span>
+                    <span className="truncate">{value}</span>
                   </li>
                 ))}
             </ul>
           </div>
-          <div className="flex flex-col lg:flex-col space-y-2 lg:space-y-2 lg:gap-x-2 w-full ">
+          <div className="p-5 pt-0 flex flex-col lg:flex-row gap-3">
             <Button
-              className="flex-1 transition-colors hover:border-white hover:bg-primary hover:text-white py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base text-black"
+              className="flex-1 h-10 text-sm font-medium transition-colors hover:bg-primary hover:text-white"
               asChild
               variant="outline"
               size="sm"
@@ -134,7 +133,7 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
             </Button>
 
             <Button
-              className="flex-1 py-2 lg:py-2.5 h-full text-xs md:text-sm xl:text-base"
+              className="flex-1 h-10 text-sm font-medium"
               asChild
               size="sm"
             >

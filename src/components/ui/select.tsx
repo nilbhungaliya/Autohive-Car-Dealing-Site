@@ -25,20 +25,30 @@ export const Select = (props: SelectProps) => {
 
   return (
     <div className={cn("mt-1", className)}>
-      {label && <h4 className="text-sm font-semibold">{label}</h4>}
+      {label && (
+        <h4 className="text-sm font-semibold text-foreground">{label}</h4>
+      )}
       <div className="mt-1">
         <select
           onChange={onChange}
           value={value ?? ""}
           className={cn(
             selectClassName,
-            "disabled:!bg-gray-100 w-full px-3 py-2 border-input border rounded-md focus:outline-hidden custom-select appearance-none pr-12 bg-no-repeat"
+            "disabled:!bg-muted w-full px-3 py-2 border-input border rounded-md focus:outline-hidden custom-select appearance-none pr-12 bg-no-repeat bg-background text-foreground"
           )}
           {...rest}
         >
-          {noDefault && <option value="">Select</option>}
+          {noDefault && (
+            <option value="" className="bg-card text-foreground">
+              Select
+            </option>
+          )}
           {options.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option
+              key={option.value}
+              value={option.value}
+              className="bg-card text-foreground"
+            >
               {option.label}
             </option>
           ))}

@@ -21,8 +21,8 @@ const ActiveLinkContent = (props: ActiveLinkProps) => {
 			className={cn(
 				className,
 				isActive
-					? "bg-primary text-primary-foreground hover:bg-primary"
-					: "text-muted hover:bg-white/10",
+					? "bg-primary text-foreground hover:bg-primary"
+					: "text-foreground hover:bg-muted-foreground",
 			)}
 		>
 			{children}
@@ -33,7 +33,7 @@ const ActiveLinkContent = (props: ActiveLinkProps) => {
 export const ActiveLink = (props: ActiveLinkProps) => {
 	return (
 		<Suspense fallback={
-			<div className={cn(props.className, "animate-pulse bg-gray-700 rounded")}>
+			<div className={cn(props.className, "animate-pulse bg-card rounded")}>
 				{props.children}
 			</div>
 		}>

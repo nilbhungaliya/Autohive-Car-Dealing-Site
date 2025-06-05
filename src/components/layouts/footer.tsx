@@ -4,6 +4,8 @@ import Link from "next/link";
 import { SiMeta, SiX, SiInstagram } from "@icons-pack/react-simple-icons";
 import { navLinks } from "@/config/constants";
 import { NewsletterForm } from "../shared/newsletter-form";
+import {motion} from "framer-motion"
+import { ModernLogo } from "../ui/modern-logo";
 
 const socialLinks = [
   {
@@ -31,52 +33,56 @@ const socialLinks = [
 
 export const PublicFooter = () => {
   return (
-    <footer className="bg-gray-100 px-8 lg:px-0 py-8">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="flex flex-col space-x-2 gap-y-2">
-          <Link className="flex items-center" href={routes.home}>
-            <Image
-              width={150}
-              height={10}
-              alt="logo"
-              className="h-8 relative"
-              src="/autohive-logo.svg"
-            />
-          </Link>
-          <div className="flex space-x-4">
+    <footer className="bg-transparent border-t border-border px-3 lg:px-0 py-12 mt-16">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="flex flex-col gap-y-4 w-[35%]">
+          <motion.div
+            className="w-[35%]"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <Link href="/">
+              <ModernLogo size="sm" />
+            </Link>
+          </motion.div>
+          <div className="flex space-x-4 mt-2 ml-4">
             {socialLinks.map((link) => {
               return (
                 <Link href={link.href} key={link.id}>
-                  {link.icon}
+                  <span className="text-muted-foreground hover:text-primary transition-colors">
+                    {link.icon}
+                  </span>
                 </Link>
               );
             })}
           </div>
         </div>
-        <ul className="space-y-1">
+        <ul className="flex flex-col items-start md:items-center w-[35%]">
           {navLinks.map((link) => (
             <li key={link.id}>
               <Link
                 href={link.href}
-                className="text-black hover:text-primary"
+                className="text-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
             </li>
           ))}
           <li>
-              <Link
-                href={routes.signIn}
-                className="text-black hover:text-primary"
-              >
-                Admin
-              </Link>
-            </li>
+            <Link
+              href={routes.signIn}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Admin
+            </Link>
+          </li>
         </ul>
-        <NewsletterForm />
+        <div className="flex flex-col items-start md:items-end w-full">
+          <NewsletterForm />
+        </div>
       </div>
-      <div className="container mx-auto mt-8 text-center text-gray-700">
-        <h4 className="text-lg font-bold text-primary">Company Info</h4>
+      <div className="container mx-auto mt-10 text-center text-muted-foreground border-t border-border pt-8">
+        <h4 className="text-lg font-bold text-primary mb-2">Company Info</h4>
         <p>Company No. 123456789 | VAT No. GB123456789</p>
         <p>
           Autohive Motors is not authorised and not regulated by the Financial

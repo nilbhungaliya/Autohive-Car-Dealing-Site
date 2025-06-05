@@ -43,7 +43,7 @@ export const TaxonomyFilters = (props: TaxonomyFiltersProps) => {
   }, [searchParams]);
 
   return (
-    <div>
+    <div className="space-y-4">
       <Select
         label="Make"
         name="make"

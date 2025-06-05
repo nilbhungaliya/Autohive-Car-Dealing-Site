@@ -31,10 +31,10 @@ export const SettingsPageContent = () => {
     <div className="divide-y divide-white/5 px-6">
       <div className="grid max-w-7xl grid-cols-1 gap-x-8 md:grid-cols-3">
         <div>
-          <h2 className="text-base font-semibold leading-7 text-muted">
+          <h2 className="text-base font-semibold leading-7 text-foreground">
             Log out of all sessions
           </h2>
-          <p className="mt-1 text-sm leading-6 text-muted/75">
+          <p className="mt-1 text-sm leading-6 text-foreground">
             This will log out out of all of your sessions across all of your
             devices of which you are currently logged into.
           </p>

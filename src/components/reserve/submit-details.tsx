@@ -94,7 +94,7 @@ export const SubmitDetails = (props: MultiStepFormComponentProps) => {
   return (
     <Form {...form}>
       <form
-        className="mx-auto bg-white flex flex-col rounded-b-lg shadow-lg p-6 h-96 text-black"
+        className="mx-auto bg-background flex flex-col rounded-b-lg shadow-lg p-6 h-96 text-foreground"
         onSubmit={form.handleSubmit(onSubmitDetails)}
       >
         <div className="space-y-6 flex-1">

@@ -1,11 +1,16 @@
 import { AdminSearch } from "../admin/search";
+import { ModernLogo } from "../ui/modern-logo";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 export const AdminHeader = async () => {
 	return (
-		<header className="flex h-[60px] items-center gap-4 px-6">
-			<div className="items-center flex-1 gap-4 md:gap-8 grid grid-cols-3 w-full">
-				<div className="col-span-1">
+		<header className="flex h-[60px] items-center gap-4 px-6 bg-background border-b border-border text-foreground">
+			<div className="flex items-center justify-between w-full">
+				<div className="flex items-center gap-4">
 					<AdminSearch />
+				</div>
+				<div className="flex items-center gap-4">
+					<ThemeToggle />
 				</div>
 			</div>
 		</header>

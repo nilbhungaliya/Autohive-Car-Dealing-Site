@@ -57,7 +57,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
   return (
     <TableHeader>
       <TableRow className="hover:bg-transparent border-primary-800">
-        <TableHead className="text-muted w-[80px]">
+        <TableHead className="text-foreground w-[80px]">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("id")}
@@ -71,7 +71,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted w-[150px]">
+        <TableHead className="text-foreground w-[150px]">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("status")}
@@ -85,7 +85,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted w-[150px]">
+        <TableHead className="text-foreground w-[150px]">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("firstName")}
@@ -99,7 +99,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted w-[150px]">
+        <TableHead className="text-foreground w-[150px]">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("email")}
@@ -113,7 +113,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted w-[150px]">
+        <TableHead className="text-foreground w-[150px]">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("mobile")}
@@ -127,8 +127,8 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted max-w-[150px]">Classified</TableHead>
-        <TableHead className="text-muted hidden md:table-cell">
+        <TableHead className="text-foreground max-w-[150px]">Classified</TableHead>
+        <TableHead className="text-foreground hidden md:table-cell">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("createdAt")}
@@ -142,7 +142,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted hidden md:table-cell">
+        <TableHead className="text-foreground hidden md:table-cell">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("updatedAt")}
@@ -156,7 +156,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted">
+        <TableHead className="text-foreground">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => handleSort("bookingDate")}
@@ -170,7 +170,7 @@ export const CustomersTableHeader = (props: CustomersTableHeaderProps) => {
             />
           </div>
         </TableHead>
-        <TableHead className="text-muted w-[100px]">Actions</TableHead>
+        <TableHead className="text-foreground w-[100px]">Actions</TableHead>
       </TableRow>
     </TableHeader>
   );

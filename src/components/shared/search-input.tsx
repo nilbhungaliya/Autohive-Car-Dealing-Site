@@ -48,19 +48,19 @@ export const SearchInput = (props: SearchInputProps) => {
   }
 
   return (
-    <form className="relative flex-1 text-black">
-      <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+    <form className="relative flex-1 text-foreground">
+      <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         ref={inputRef}
         defaultValue={q || ""}
-        className={cn(className, "pl-8")}
+        className={cn(className, "pl-8 bg-background text-foreground placeholder:text-muted-foreground")}
         onChange={onchange}
         type="text"
         {...rest}
       />
       {q && (
         <XIcon
-          className="absolute right-2.5 top-2.5 h-4 w-4 text-white bg-gray-500 p-0.5 rounded-full cursor-pointer"
+          className="absolute right-2.5 top-2.5 h-4 w-4 text-foreground bg-muted p-0.5 rounded-full cursor-pointer"
           onClick={clearSearch}
         />
       )}

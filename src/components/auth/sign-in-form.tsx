@@ -9,6 +9,7 @@ import { CircleCheckIcon, CircleX, Loader2 } from "lucide-react";
 import { signInAction } from "@/app/_actions/sign-in";
 import { useFormStatus } from "react-dom";
 import { Button } from "../ui/button";
+import { ModernLogo } from "../ui/modern-logo";
 
 const SubmitButton = () => {
 	const { pending } = useFormStatus();
@@ -43,15 +44,18 @@ export const SignInForm = () => {
 	}, [state, router]);
 
     return (
-		<div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] bg-white text-black">
-			<div className="max-w-md w-full pb-60">
+		<div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] bg-transparent text-foreground px-4 overflow-hidden">
+			<div className="flex justify-center mb-8">
+				<ModernLogo size="md" animated />
+			</div>
+			<div className="w-full max-w-md mx-auto">
 				<form
 					ref={formRef}
 					action={formAction}
-					className="border-muted border shadow-lg p-10 rounded-md bg-white"
+					className="border border-border shadow-lg p-10 rounded-xl bg-card"
 				>
 					<div className="flex items-center mb-6 justify-center">
-						<h2 className="uppercase text-2xl font-bold">Admin Sign In</h2>
+						<h2 className="uppercase text-2xl font-bold tracking-tight">Admin Sign In</h2>
 					</div>
 					<div className="space-y-4">
 						<div className="space-y-2">
@@ -61,7 +65,7 @@ export const SignInForm = () => {
 								type="email"
 								name="email"
 								autoComplete="email"
-								className="placeholder:text-gray-500"
+								className="placeholder:text-muted-foreground"
 								placeholder="Enter your administrator email address"
 								required
 							/>
@@ -73,27 +77,27 @@ export const SignInForm = () => {
 								type="password"
 								name="password"
 								autoComplete="password"
-								className="placeholder:text-gray-500"
+								className="placeholder:text-muted-foreground"
 								placeholder="Enter your password"
 								required
 							/>
 						</div>
 
 						<div className="my-6">
-							<p className="text-sm text-gray-600 mb-2 text-center">
+							<p className="text-sm text-muted-foreground mb-2 text-center">
 								<b>This is for admin only.</b>
 							</p>
 						</div>
 						<div className="space-y-4">
 							<SubmitButton />
 							{state.success && (
-								<div className="flex items-center gap-2 rounded-md text-green-500 p-3">
+								<div className="flex items-center gap-2 rounded-md text-green-600 dark:text-green-400 p-3 bg-green-100 dark:bg-green-900/20">
 									<CircleCheckIcon className="h-5 w-5" />
 									<span>Success! {state.message}</span>
 								</div>
 							)}
 							{!state.success && state.message && (
-								<div className="flex items-center gap-2 rounded-md text-red-500 p-3">
+								<div className="flex items-center gap-2 rounded-md text-destructive p-3 bg-destructive/10">
 									<CircleX className="h-5 w-5" />
 									<span>Error! {state.message}</span>
 								</div>

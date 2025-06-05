@@ -75,9 +75,9 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
   };
 
   return (
-    <div className="py-4 w-[21.25rem] bg-white border-r border-muted hidden lg:block">
+    <div className="py-4 w-72 bg-card border-r border-muted hidden lg:block">
       <div>
-        <div className="text-lg font-semibold flex justify-between px-4 text-black">
+        <div className="text-lg font-semibold flex justify-between px-4 text-foreground">
           <span>Filters</span>
           <button
             type="button"
@@ -101,7 +101,7 @@ export const Sidebar = ({ minMaxValues, searchParams }: SidebarProps) => {
           className="w-full px-3 py-2 border rounded-md focus:outline-hidden focus:ring-2 focus:ring-blue-500"
         />
       </div>
-      <div className="p-4 space-y-2">
+      <div className="p-4 space-y-4">
         <TaxonomyFilters
           searchParams={searchParams}
           handleChange={handleChange}

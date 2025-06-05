@@ -17,16 +17,17 @@ interface InputSelectProps extends NumericFormatProps {
 	label?: string;
 	options: FilterOptions<string, string>;
 	prefix?: string;
+	selectClassName?: string;
 }
 
 export const InputSelect = (props: InputSelectProps) => {
-	const { inputName, selectName, label, options, prefix, ...numberInputProps } =
+	const { inputName, selectName, label, options, prefix, selectClassName, ...numberInputProps } =
 		props;
 
 	const form = useFormContext();
 
 	return (
-		<div className="w-full relative">
+		<div className="w-full relative bg-background">
 			<FormField
 				control={form.control}
 				name={inputName}
@@ -35,8 +36,7 @@ export const InputSelect = (props: InputSelectProps) => {
 						{label && <FormLabel htmlFor={inputName}>{label}</FormLabel>}
 						<FormControl>
 							<NumberInput
-								// style={{ backgroundColor: "#081a2b" }}
-								className="text-muted/75"
+								className="text-foreground bg-background"
 								onValueChange={(values) => {
 									onChange(values.floatValue);
 								}}
@@ -54,22 +54,23 @@ export const InputSelect = (props: InputSelectProps) => {
 				render={({ field: { ref, ...rest } }) => (
 					<FormItem>
 						<FormControl>
-							<div className="absolute right-0 -translate-y-10 h-9 mr-2 flex items-center pr-2 border-l border-l-white/10 border-input bg-primary-900">
+							<div className="absolute right-0 -translate-y-10 h-9 mr-2 flex items-center pr-2 border-l border-l-white/10 border-input bg-background">
 								<select
 									className={cn(
-										"custom-select appearance-none pr-10 bg-no-repeat disabled:bg-white/10 border rounded-md focus:outline-hidden focus:ring-0 focus-visible:ring-0 pl-3 text-muted/75 border-transparent bg-primary-900",
+										"custom-select appearance-none pr-10 bg-no-repeat disabled:bg-muted border rounded-md focus:outline-hidden focus:ring-0 focus-visible:ring-0 pl-3 text-foreground border-transparent bg-backgroung",
+										selectClassName
 									)}
 									{...rest}
 								>
 									{options.map((option) => (
-										<option key={option.value} value={option.label} className="bg-primary-800 text-white">
+										<option key={option.value} value={option.label} className="bg-background text-foreground">
 											{option.label}
 										</option>
 									))}
 								</select>
 							</div>
 						</FormControl>
-						<FormMessage className="text-sm text-red-500" />
+						<FormMessage className="text-sm text-destructive" />
 					</FormItem>
 				)}
 			/>

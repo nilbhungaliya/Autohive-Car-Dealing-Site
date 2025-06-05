@@ -8,7 +8,7 @@ export default async function Home(props: PageProps) {
   const searchParams = await props.searchParams;
 
   return (
-    <div className="w-full min-h-screen bg-background text-black">
+    <div className="w-full min-h-screen bg-transparent text-foreground">
       <HeroSection searchParams={searchParams} />
       <FeatureSection />
       <LatestArrivals />

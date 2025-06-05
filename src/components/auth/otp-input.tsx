@@ -20,10 +20,10 @@ const containerClassNames = {
 };
 
 const inputClassNames = {
-  base: "block peer text-center texct-slate-950 bg-transparent mr-2 focus:placeholder:opacity-0 focus:outline-hidden transition duration-200 disabled:bg-zinc-50 disabled:placeholder:text-gray-400 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-200 rounded focus:outline-hidden focus:border-primary",
+  base: "block peer text-center bg-transparent mr-2 focus:placeholder:opacity-0 focus:outline-hidden transition duration-200 disabled:bg-muted disabled:placeholder:text-muted-foreground disabled:text-muted-foreground disabled:cursor-not-allowed disabled:border-border rounded focus:outline-hidden focus:border-primary",
   size: "p-2 text-2xl font-medium w-12 h-12 sm:h-[70px] sm: w-[70px]",
   color: {
-    base: "bg-transparent focus:ring-[0.6px] border border-gray-300 focus-visible:border-secondary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-secondary placeholder:text-slate-950",
+    base: "bg-transparent focus:ring-[0.6px] border border-border focus-visible:border-secondary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-secondary placeholder:text-foreground",
     active: "not-read-only:hover:enabled:border-secondary focus:ring-secondary",
   },
 };

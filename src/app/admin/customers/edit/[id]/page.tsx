@@ -36,7 +36,7 @@ export default async function EditCustomerPage(props: PageProps) {
 
 	return (
 		<>
-			<div className="flex-col flex p-6 text-muted space-y-4 container">
+			<div className="flex-col flex p-6 text-muted-foreground space-y-4 container">
 				<div className="flex justify-between">
 					<h1 className="font-semibold text-lg md:text-2xl">Edit Customer</h1>
 					<EditCustomerForm customer={customer} />
@@ -45,13 +45,13 @@ export default async function EditCustomerPage(props: PageProps) {
 
 			<div className="container p-4 space-y-6">
 				<div className="grid grid-cols-2 space-x-6">
-					<Card className="bg-gray-800 border-gray-700">
+					<Card>
 						<CardHeader>
-							<CardTitle className="text-gray-100">
+							<CardTitle>
 								Personal Information
 							</CardTitle>
 						</CardHeader>
-						<CardContent className="grid gap-2 text-muted">
+						<CardContent className="grid gap-2 text-muted-foreground">
 							<div>
 								<strong>Name:</strong> {customer.firstName} {customer.lastName}
 							</div>
@@ -63,15 +63,15 @@ export default async function EditCustomerPage(props: PageProps) {
 							</div>
 						</CardContent>
 					</Card>
-					<Card className="bg-gray-800 border-gray-700">
+					<Card>
 						<CardHeader>
-							<CardTitle className="text-gray-100">Customer Status</CardTitle>
+							<CardTitle>Customer Status</CardTitle>
 						</CardHeader>
-						<CardContent className="grid gap-2 text-muted">
+						<CardContent className="grid gap-2 text-muted-foreground">
 							<div>
 								<strong>Status:</strong>{" "}
 								<Badge
-									className="text-muted/75"
+									className="text-foreground"
 									variant={CustomerBadgeMap[customer.status]}
 								>
 									{formatCustomerStatus(customer.status)}
@@ -91,13 +91,13 @@ export default async function EditCustomerPage(props: PageProps) {
 					</Card>
 				</div>
 
-				<Card className="bg-gray-800 border-gray-700">
+				<Card>
 					<CardHeader>
-						<CardTitle className="text-gray-100">
+						<CardTitle>
 							Additional Information
 						</CardTitle>
 					</CardHeader>
-					<CardContent className="grid gap-2 text-muted">
+					<CardContent className="grid gap-2 text-muted-foreground">
 						<div>
 							<strong>Customer ID:</strong> {customer.id}
 						</div>
@@ -115,28 +115,28 @@ export default async function EditCustomerPage(props: PageProps) {
 					</CardContent>
 				</Card>
 
-				<Card className="bg-gray-800 border-gray-700">
+				<Card>
 					<CardHeader>
-						<CardTitle className="text-gray-100">Customer Lifecycle</CardTitle>
+						<CardTitle>Customer Lifecycle</CardTitle>
 					</CardHeader>
-					<CardContent className="grid gap-2 text-muted">
+					<CardContent className="grid gap-2 text-muted-foreground">
 						<Table>
 							<TableHeader>
 								<TableRow>
-									<TableHead className="text-muted font-semibold text-base">
+									<TableHead className="text-muted-foreground font-semibold text-base">
 										Date
 									</TableHead>
-									<TableHead className="text-muted font-semibold text-base">
+									<TableHead className="text-muted-foreground font-semibold text-base">
 										Old Status
 									</TableHead>
-									<TableHead className="text-muted font-semibold text-base">
+									<TableHead className="text-muted-foreground font-semibold text-base">
 										New Status
 									</TableHead>
 								</TableRow>
 							</TableHeader>
 							<TableBody>
 								{customer.lifecycle.map((entry) => (
-									<TableRow className="text-muted/75" key={entry.id}>
+									<TableRow className="text-muted-foreground/75" key={entry.id}>
 										<TableCell>
 											{format(entry.updatedAt, "do MMM yyy HH:mm")}
 										</TableCell>

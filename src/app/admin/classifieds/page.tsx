@@ -57,7 +57,7 @@ export default async function ClassifiedsPage(props: PageProps) {
   return (
     <>
       <AdminClassifiedsHeader searchParams={searchParams} />
-      <Table>
+      <Table className="text-foreground">
         <ClassifiedsTableHeader
           sort={sort as ClassifiedKeys}
           order={order as "asc" | "desc"}

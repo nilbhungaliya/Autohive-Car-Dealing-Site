@@ -52,7 +52,7 @@ export const ClassifiedFormFields = () => {
   const form = useFormContext();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-muted">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-muted-foreground">
       <FormField
         control={form.control}
         name="year"
@@ -61,7 +61,7 @@ export const ClassifiedFormFields = () => {
             <FormLabel htmlFor="year">Year</FormLabel>
             <FormControl>
               <SelectAdmin
-                selectClassName="text-muted/75 bg-primary-800 border-transparent"
+                selectClassName="text-muted-foreground/75 bg-primary border-transparent"
                 options={years.map((year) => ({
                   label: year,
                   value: year,
@@ -108,7 +108,7 @@ export const ClassifiedFormFields = () => {
             <FormLabel htmlFor="transmission">Transmission</FormLabel>
             <FormControl>
               <SelectAdmin
-                selectClassName="text-muted/75 bg-primary-800 border-transparent"
+                selectClassName="text-muted-foreground/75 bg-primary border-transparent"
                 options={Object.values(Transmission).map((value) => ({
                   label: formatTransmission(value),
                   value,
@@ -128,7 +128,7 @@ export const ClassifiedFormFields = () => {
             <FormLabel htmlFor="fuelType">Fuel Type</FormLabel>
             <FormControl>
               <SelectAdmin
-                selectClassName="text-muted/75 bg-primary-800 border-transparent"
+                selectClassName="text-muted-foreground/75 bg-primary border-transparent"
                 options={Object.values(FuelType).map((value) => ({
                   label: formatFuelType(value),
                   value,
@@ -148,7 +148,7 @@ export const ClassifiedFormFields = () => {
             <FormLabel htmlFor="bodyType">Body Type</FormLabel>
             <FormControl>
               <SelectAdmin
-                selectClassName="text-muted/75 bg-primary-800 border-transparent"
+                selectClassName="text-muted-foreground/75 bg-primary border-transparent"
                 options={Object.values(BodyType).map((value) => ({
                   label: formatBodyType(value),
                   value,
@@ -168,7 +168,7 @@ export const ClassifiedFormFields = () => {
             <FormLabel htmlFor="colour">Colour</FormLabel>
             <FormControl>
               <SelectAdmin
-                selectClassName="text-muted/75 bg-primary-800 border-transparent"
+                selectClassName="text-muted-foreground/75 bg-primary border-transparent"
                 options={Object.values(Colour).map((value) => ({
                   label: formatColour(value),
                   value,
@@ -188,7 +188,7 @@ export const ClassifiedFormFields = () => {
             <FormLabel htmlFor="ulezCompliance">ULEZ Compliance</FormLabel>
             <FormControl>
               <SelectAdmin
-                selectClassName="text-muted/75 bg-primary-800 border-transparent"
+                selectClassName="text-muted-foreground/75 bg-primary border-transparent"
                 options={Object.values(ULEZCompliance).map((value) => ({
                   label: formatUlezCompliance(value),
                   value,
@@ -210,7 +210,7 @@ export const ClassifiedFormFields = () => {
             <FormControl>
               <Input
                 placeholder="LA16 PYW"
-                className="uppercase text-muted h-10 mt-1 placeholder:text-muted/75"
+                className="uppercase text-muted-foreground h-10 mt-1 placeholder:text-muted-foreground/75"
                 {...rest}
               />
             </FormControl>
@@ -229,8 +229,7 @@ export const ClassifiedFormFields = () => {
                 max={6}
                 min={1}
                 placeholder="0"
-                // style={{ background: "#081a2b" }}
-                className="text-muted placeholder:text-muted/75"
+                className="text-muted-foreground placeholder:text-muted-foreground/75"
                 onValueChange={(values) => {
                   onChange(values.floatValue);
                 }}
@@ -252,8 +251,7 @@ export const ClassifiedFormFields = () => {
                 max={8}
                 min={1}
                 placeholder="0"
-                // style={{ background: "#081a2b" }}
-                className="text-muted placeholder:text-muted/75"
+                className="text-muted-foreground placeholder:text-muted-foreground/75"
                 onValueChange={(values) => {
                   onChange(values.floatValue);
                 }}

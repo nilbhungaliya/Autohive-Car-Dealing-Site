@@ -54,18 +54,18 @@ export const AdminTableFooter = (props: AdminTableFooterProps) => {
 							disabled={disabled}
 							className="-mt-1"
 							noDefault={false}
-							selectClassName="bg-primary-800 text-muted/75 border-primary-800"
+							selectClassName="bg-primary-800 text-muted-foreground border-primary-800"
 						/>
 						<CustomPagination
 							totalPages={totalPages}
 							baseURL={baseURL}
 							styles={{
-								paginationRoot: "justify-end",
+								paginationRoot: "justify-end text-muted-foreground",
 								paginationPrevious:
-									"border-none hover:bg-primary-800 text-muted",
-								paginationNext: "hover:bg-primary-800 text-muted",
-								paginationLink: "border-none hover:bg-primary-800 text-muted",
-								paginationLinkActive: "bg-primary-800 !text-white",
+									"border-none hover:bg-primary-800 text-muted-foreground",
+								paginationNext: "hover:bg-primary-800 text-muted-foreground",
+								paginationLink: "border-none hover:bg-primary-800 text-muted-foreground",
+								paginationLinkActive: "bg-primary-800 !text-foreground",
 							}}
 						/>
 					</div>

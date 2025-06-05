@@ -15,7 +15,6 @@ import { ClassifiedStatus, type Prisma } from "@prisma/client";
 import { Suspense } from "react";
 import { z } from "zod";
 
-
 const getInventory = async (searchParams: AwaitedPageProps["searchParams"]) => {
   const validPage = PageSchema.parse(searchParams?.page);
 
@@ -65,51 +64,67 @@ export default async function InventoryPage(props: PageProps) {
   // console.log({ favourites });
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen bg-background mt-10">
       <Sidebar minMaxValues={minMaxResult} searchParams={searchParams} />
 
-      <div className="flex-1 bg-white p-4">
-        <div className="space-y-2 items-center justify-between pb-4 -mt-1">
-          <div className="flex justify-between items-center w-full">
-            <h2 className="text-sm md:text-base lg:text-xl font-semibold min-w-fit text-black">
-              We have found {count} classifieds
-            </h2>
-            <DialogFilters
-              minMaxValues={minMaxResult}
-              count={0}
-              searchParams={searchParams}
-            />
+      <div className="flex-1 p-4 md:p-6 lg:p-8">
+        <div className="max-w-[1920px] mx-auto space-y-8 w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b">
+            <div className="space-y-1">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-foreground">
+                Available Cars
+              </h2>
+              <p className="text-sm md:text-base text-muted-foreground">
+                We have found {count} classifieds
+              </p>
+            </div>
+            {/* <div className="flex items-center gap-4">
+              <DialogFilters
+                minMaxValues={minMaxResult}
+                count={0}
+                searchParams={searchParams}
+              />
+              <CustomPagination
+                baseURL={routes.inventory}
+                totalPages={totalPages}
+                styles={{
+                  paginationRoot: "justify-end hidden lg:flex text-foreground",
+                  paginationPrevious:
+                    "hover:bg-accent hover:text-accent-foreground",
+                  paginationNext:
+                    "hover:bg-accent hover:text-accent-foreground",
+                  paginationLink:
+                    "border-none active:border hover:text-accent-foreground hover:bg-accent",
+                  paginationLinkActive: "bg-accent",
+                }}
+              />
+            </div> */}
+          </div>
+
+          <div>
+            <Suspense fallback={<InventorySkeleton />}>
+              <ClassifiedList
+                classifieds={classifieds}
+                favourites={favourites ? favourites.ids : []}
+              />
+            </Suspense>
+          </div>
+
+          <div className="flex justify-center w-full border-t pt-8 mt-8">
             <CustomPagination
               baseURL={routes.inventory}
               totalPages={totalPages}
               styles={{
-                paginationRoot: "justify-end hidden lg:flex text-black",
-                paginationPrevious: "hover:bg-slate-200 hover:text-black",
-                paginationNext: "hover:bg-slate-200 hover:text-black",
+                paginationRoot: "justify-center text-foreground",
+                paginationPrevious:
+                  "hover:bg-accent hover:text-accent-foreground",
+                paginationNext: "hover:bg-accent hover:text-accent-foreground",
                 paginationLink:
-                  "border-none active:border hover:text-black hover:bg-slate-200",
-                paginationLinkActive: "bg-slate-200",
+                  "border-none active:border hover:bg-accent hover:text-accent-foreground",
+                paginationLinkActive: "bg-accent",
               }}
             />
           </div>
-          <Suspense fallback={<InventorySkeleton />}>
-            <ClassifiedList
-              classifieds={classifieds}
-              favourites={favourites ? favourites.ids : []}
-            />
-          </Suspense>
-          <CustomPagination
-            baseURL={routes.inventory}
-            totalPages={totalPages}
-            styles={{
-              paginationRoot: "justify-center lg:hidden pt-12 text-black",
-              paginationPrevious: "hover:bg-slate-200 hover:text-black",
-              paginationNext: "hover:bg-slate-200 hover:text-black",
-              paginationLink:
-                "border-none active:border hover:bg-slate-200 hover:text-black",
-              paginationLinkActive: "bg-slate-200",
-            }}
-          />
         </div>
       </div>
     </div>

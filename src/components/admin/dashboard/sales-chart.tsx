@@ -30,13 +30,13 @@ const SalesChartContent = (props: SalesChartProps) => {
 	const chartData = use(data);
 
 	return (
-		<Card className="mb-6 bg-gray-800 border-gray-700">
+		<Card className="mb-6 bg-card border-border">
 			<CardHeader>
-				<CardTitle className="text-gray-100">
+				<CardTitle className="text-foreground">
 					Monthly Sales {new Date().getFullYear() - 1}/
 					{new Date().getFullYear()}
 				</CardTitle>
-				<CardDescription className="text-gray-400">
+				<CardDescription className="text-muted-foreground">
 					Number of cars sold per month
 				</CardDescription>
 			</CardHeader>
@@ -78,13 +78,13 @@ const SalesChartContent = (props: SalesChartProps) => {
 export const SalesChart = (props: SalesChartProps) => {
 	return (
 		<Suspense fallback={
-			<Card className="mb-6 bg-gray-800 border-gray-700 animate-pulse">
+			<Card className="mb-6 bg-card border-border animate-pulse">
 				<CardHeader>
-					<div className="h-6 w-48 bg-gray-700 rounded" />
-					<div className="h-4 w-64 bg-gray-700 rounded mt-2" />
+					<div className="h-6 w-48 bg-muted rounded" />
+					<div className="h-4 w-64 bg-muted rounded mt-2" />
 				</CardHeader>
 				<CardContent>
-					<div className="h-[500px] w-full bg-gray-700 rounded" />
+					<div className="h-[500px] w-full bg-muted rounded" />
 				</CardContent>
 			</Card>
 		}>
@@ -100,8 +100,8 @@ const CustomTooltip = ({
 }: TooltipProps<number, string>) => {
 	if (active && payload && payload.length) {
 		return (
-			<div className="bg-gray-800 border border-gray-700 p-2 rounded">
-				<p className="text-gray-100">
+			<div className="bg-card border border-border p-2 rounded">
+				<p className="text-foreground">
 					{`${label}: ${formatPrice({ price: payload[0].value as number, currency: "GBP" })}`}
 				</p>
 			</div>

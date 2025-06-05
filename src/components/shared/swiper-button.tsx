@@ -23,7 +23,7 @@ export const SwiperButtons = (props: SwiperButtonsProps) => {
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <ChevronLeft className="h-8 w-8" color="black" />
+        <ChevronLeft className="h-8 w-8" />
       </Button>
       <Button
         variant="ghost"
@@ -36,7 +36,7 @@ export const SwiperButtons = (props: SwiperButtonsProps) => {
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <ChevronRight className="h-8 w-8" color="black" />
+        <ChevronRight className="h-8 w-8" />
       </Button>
     </div>
   );

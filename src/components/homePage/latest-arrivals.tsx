@@ -18,7 +18,7 @@ export const LatestArrivals = async () => {
     return (
         <section className="py-16 sm:py-24">
 			<div className="container mx-auto max-w-[80vw]">
-				<h2 className="mt-2 uppercase text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+				<h2 className="mt-2 uppercase text-2xl font-bold tracking-tight text-foreground sm:text-4xl">
 					Latest Arrivals
 				</h2>
 				<LatestArrivalsCarousel
