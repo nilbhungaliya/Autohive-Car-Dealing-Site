@@ -1,9 +1,18 @@
+import { auth } from "@/auth";
+import { routes } from "@/config/routes";
 import { AdminHeader } from "@/components/layouts/admin-header";
 import { AdminSidebar } from "@/components/layouts/admin-sidebar";
 import type { PropsWithChildren } from "react";
+import { redirect } from "next/navigation";
 import { AI } from "../_actions/ai";
 
 export default async function AdminLayout({ children }: PropsWithChildren) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect(routes.signIn);
+  }
+
   return (
     <AI>
       <div className="flex bg-background text-foreground min-h-screen w-full">

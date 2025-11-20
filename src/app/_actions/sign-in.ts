@@ -4,6 +4,7 @@ import { SignInSchema } from "../schemas/auth-schema";
 import { routes } from "@/config/routes";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { PrevState } from "@/config/types";
+import { AuthError } from "next-auth";
 
 export const signInAction = async (_: PrevState, formData: FormData) => {
   try {
@@ -20,21 +21,35 @@ export const signInAction = async (_: PrevState, formData: FormData) => {
       return { success: false, message: "Invalid Credentials" };
     }
 
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
       email: data.email,
       password: data.password,
-      redirect: true,
+      redirect: false,
       redirectTo: routes.challenge,
     });
-    
+
+    if (result?.error) {
+      return { success: false, message: "Invalid Credentials" };
+    }
+
     return {
       success: true,
       message: "Signed in successfully!",
+      redirectTo: routes.challenge,
     };
 
   } catch (error) {
-    console.log({ error });
     if (isRedirectError(error)) throw error;
-    return { success: false, message: "Invalid Credentials" };
+
+    if (error instanceof AuthError) {
+      if (error.type === "CredentialsSignin") {
+        return { success: false, message: "Invalid Credentials" };
+      }
+
+      return { success: false, message: "Unable to sign in. Try again." };
+    }
+
+    console.error(error);
+    return { success: false, message: "Something went wrong." };
   }
 };

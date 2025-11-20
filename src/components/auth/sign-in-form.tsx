@@ -39,7 +39,9 @@ export const SignInForm = () => {
     useEffect(() => {
 		if (state.success && formRef.current) {
 			router.refresh();
-			// router.push(routes.challenge);
+			if (state.redirectTo) {
+				router.push(state.redirectTo);
+			}
 		}
 	}, [state, router]);
 

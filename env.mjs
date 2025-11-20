@@ -38,7 +38,7 @@ export const env = createEnv({
         NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
         RESEND_API_KEY: process.env.RESEND_API_KEY,
         FROM_EMAIL_ADDRESS: process.env.FROM_EMAIL_ADDRESS,
-        X_AUTH_TOKEN: process.env.FROM_EMAIL_ADDRESS,
+        X_AUTH_TOKEN: process.env.X_AUTH_TOKEN,
         OPENAI_API_KEY: process.env.OPENAI_API_KEY,
         NEXT_PUBLIC_S3_BUCKET_REGION: process.env.NEXT_PUBLIC_S3_BUCKET_REGION,
         NEXT_PUBLIC_S3_BUCKET_NAME: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,

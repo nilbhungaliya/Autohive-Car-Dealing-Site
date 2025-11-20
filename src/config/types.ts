@@ -58,6 +58,7 @@ export interface MultiStepFormComponentProps extends AwaitedPageProps {
 export type PrevState = {
   success: boolean;
   message: string;
+  redirectTo?: string;
 };
 
 export interface ProgressArgs {
