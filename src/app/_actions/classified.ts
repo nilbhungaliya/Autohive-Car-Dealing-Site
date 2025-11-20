@@ -11,7 +11,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import slugify from "slugify";
 import { createPngDataUri } from "unlazy/thumbhash";
-import { UpdateClassifiedType } from "../schemas/classified-schema";
+import { CreateClassifiedType, UpdateClassifiedType } from "../schemas/classified-schema";
 import Forbidden from "../api/forbidden";
 
 export const createClassifiedAction = async (data: StreamableSkeletonProps) => {
@@ -92,6 +92,118 @@ export const createClassifiedAction = async (data: StreamableSkeletonProps) => {
       success = true;
     }
   } catch (error) {
+    return { success: false, message: "Something went wrong" };
+  }
+
+  if (success && classifiedId) {
+    revalidatePath(routes.admin.classifieds);
+    redirect(routes.admin.editClassified(classifiedId));
+  } else {
+    return { success: false, message: "Failed to create classified" };
+  }
+};
+
+export const createClassifiedFormAction = async (data: CreateClassifiedType) => {
+  const session = await auth();
+  if (!session) Forbidden();
+
+  let success = false;
+  let classifiedId: number | null = null;
+
+  try {
+    const makeId = Number(data.make);
+    const modelId = Number(data.model);
+    const modelVariantId = data.modelVariant ? Number(data.modelVariant) : null;
+
+    const make = await db.make.findUnique({
+      where: { id: makeId as number },
+    });
+
+    const model = await db.model.findUnique({
+      where: { id: modelId as number },
+    });
+
+    let title = `${data.year} ${make?.name} ${model?.name}`;
+
+    if (modelVariantId) {
+      const modelVariant = await db.modelVariant.findUnique({
+        where: { id: modelVariantId },
+      });
+
+      if (modelVariant) title = `${title} ${modelVariant.name}`;
+    }
+
+    let slug = slugify(`${title} ${data.vrm ?? randomInt(100000, 999999)}`);
+
+    const slugLikeFound = await db.classified.count({
+      where: { slug: { contains: slug, mode: "insensitive" } },
+    });
+
+    if (slugLikeFound) {
+      slug = slugify(`${title} ${data.vrm} ${slugLikeFound + 1}`);
+    }
+
+    const [classified, images] = await db.$transaction(
+      async (prisma) => {
+        const imageData = await Promise.all(
+          data.images.map(async ({ src }, index) => {
+            const hash = await generateThumbHashFromSrcUrl(src);
+            const uri = createPngDataUri(hash);
+            return {
+              isMain: !index,
+              blurhash: uri,
+              src,
+              alt: `${title} ${index + 1}`,
+            };
+          })
+        );
+
+        const classified = await prisma.classified.create({
+          data: {
+            slug,
+            title,
+            year: Number(data.year),
+            makeId,
+            modelId,
+            ...(modelVariantId && { modelVariantId }),
+            vrm: data.vrm,
+            price: data.price * 100,
+            currency: data.currency,
+            odoReading: data.odoReading,
+            odoUnit: data.odoUnit,
+            fuelType: data.fuelType,
+            bodyType: data.bodyType,
+            transmission: data.transmission,
+            colour: data.colour,
+            ulezCompliance: data.ulezCompliance,
+            description: data.description,
+            doors: data.doors,
+            seats: data.seats,
+            status: data.status,
+            images: {
+              create: imageData,
+            },
+          },
+        });
+
+        const images = await prisma.image.findMany({
+          where: { classifiedId: classified.id },
+        });
+
+        return [classified, images];
+      },
+      { timeout: 10000 }
+    );
+
+    if (classified && images) {
+      classifiedId = classified.id;
+      success = true;
+    }
+  } catch (error) {
+    console.log({ error });
+    if (error instanceof Error) {
+      return { success: false, message: error.message };
+    }
     return { success: false, message: "Something went wrong" };
   }
 

@@ -2,6 +2,9 @@ import { RadioFilter } from "@/components/shared/radio-filter";
 import type { AwaitedPageProps } from "@/config/types";
 import { ClassifiedStatus } from "@prisma/client";
 import { CreateClassifiedDialog } from "./create-classified-dialog";
+import { Button } from "@/components/ui/button";
+import { routes } from "@/config/routes";
+import Link from "next/link";
 
 export const AdminClassifiedsHeader = ({ searchParams }: AwaitedPageProps) => {
   return (
@@ -13,7 +16,14 @@ export const AdminClassifiedsHeader = ({ searchParams }: AwaitedPageProps) => {
             items={["ALL", ...Object.values(ClassifiedStatus)]}
             searchParams={searchParams}
           />
-          <CreateClassifiedDialog />
+          <div className="flex gap-2">
+            <Link href={routes.admin.createClassified}>
+              <Button size="sm" variant="default">
+                Manually Create Car
+              </Button>
+            </Link>
+            <CreateClassifiedDialog />
+          </div>
         </div>
       </div>
     </div>

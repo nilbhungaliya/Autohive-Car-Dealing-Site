@@ -57,4 +57,7 @@ export const ClassifiedFilterSchema = z.object({
     ),
   });
   
+  export const createClassifiedSchema = updateClassifiedSchema.omit({ id: true });
+  
   export type UpdateClassifiedType = z.infer<typeof updateClassifiedSchema>;
+  export type CreateClassifiedType = z.infer<typeof createClassifiedSchema>;
