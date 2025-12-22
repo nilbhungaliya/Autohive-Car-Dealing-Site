@@ -160,7 +160,7 @@ import {
   createStreamableUI,
   createStreamableValue,
   StreamableValue,
-} from "ai/rsc";
+} from "@ai-sdk/rsc";
 
 const genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({

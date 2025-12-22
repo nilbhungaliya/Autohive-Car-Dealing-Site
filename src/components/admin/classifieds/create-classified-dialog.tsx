@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { readStreamableValue, useActions, useUIState } from "ai/rsc";
+import { readStreamableValue, useActions, useUIState } from "@ai-sdk/rsc";
 import { useState, useTransition } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StreamableSkeletonProps } from "./streamable-skeleton";
