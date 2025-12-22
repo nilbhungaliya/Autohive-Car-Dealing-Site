@@ -8,10 +8,10 @@ const prisma = new PrismaClient();
 
 async function main() {
 	// console.log("testing");
-	await seedTaxonomy(prisma);
-	await seedClassifieds(prisma);
-	await seedImages(prisma);
-	await seedAdmin(prisma);
+	// await seedTaxonomy(prisma);
+	// await seedClassifieds(prisma);
+	// await seedImages(prisma);
+	// await seedAdmin(prisma);
 }
 
 main()
