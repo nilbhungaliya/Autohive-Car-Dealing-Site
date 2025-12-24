@@ -118,7 +118,7 @@ export const ClassifiedCard = (props: ClassifiedCardProps) => {
                 ))}
             </ul>
           </div>
-          <div className="p-5 pt-0 flex flex-col lg:flex-row gap-3">
+          <div className="p-5 pt-0 flex flex-col lg:flex-row gap-3 justify-center">
             <Button
               className="flex-1 h-10 text-sm font-medium transition-colors hover:bg-primary hover:text-white"
               asChild
