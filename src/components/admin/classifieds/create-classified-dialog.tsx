@@ -58,13 +58,35 @@ export const CreateClassifiedDialog = () => {
 
   const onImageSubmit: SubmitHandler<SingleImageType> = (data) => {
     startUploadTransition(async () => {
-      const responseMessage = await generateClassified(data.image);
-      if (!responseMessage) return;
-      setMessages((currentMessages) => [...currentMessages, responseMessage]);
-      for await (const value of readStreamableValue(
-        responseMessage.classified
-      )) {
-        if (value) createForm.reset(value);
+      try {
+        if (!generateClassified) {
+          console.error('generateClassified is not available');
+          toast.error('AI service unavailable. Please try again.');
+          return;
+        }
+        
+        console.log('Calling generateClassified with image:', data.image);
+        const responseMessage = await generateClassified(data.image);
+        console.log('Response message:', responseMessage);
+        
+        if (!responseMessage) {
+          console.error('No response message received');
+          toast.error('No response from AI. Please try again.');
+          return;
+        }
+        
+        setMessages((currentMessages) => [...currentMessages, responseMessage]);
+        for await (const value of readStreamableValue(
+          responseMessage.classified
+        )) {
+          if (value) {
+            console.log('Setting form value:', value);
+            createForm.reset(value);
+          }
+        }
+      } catch (error) {
+        console.error('Error in generateClassified:', error);
+        toast.error(`Failed to process image: ${error instanceof Error ? error.message : 'Unknown error'}`);
       }
     });
   };
