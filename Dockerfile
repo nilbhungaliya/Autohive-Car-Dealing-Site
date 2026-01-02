@@ -46,7 +46,7 @@ FROM base AS production
 WORKDIR /app
 
 # Set environment variables
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 # Create a non-root user
 RUN addgroup -S -g 1001 nodejs && \

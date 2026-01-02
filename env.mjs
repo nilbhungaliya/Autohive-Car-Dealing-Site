@@ -15,6 +15,7 @@ export const env = createEnv({
         X_AUTH_TOKEN:z.string(),
         OPENAI_API_KEY: z.string(),
         GEMINI_API_KEY: z.string(),
+        GROQ_API_KEY: z.string(),
     },
 
     client:{
@@ -44,6 +45,7 @@ export const env = createEnv({
         NEXT_PUBLIC_S3_BUCKET_NAME: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,
         NEXT_PUBLIC_S3_URL: process.env.NEXT_PUBLIC_S3_URL,
         GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+        GROQ_API_KEY: process.env.GROQ_API_KEY,
         NEXT_PUBLIC_TINYMCE_API_KEY: process.env.NEXT_PUBLIC_TINYMCE_API_KEY,
     }
 })
